@@ -1,0 +1,343 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>El Greco Ingolstadt</title>
+<meta property="og:title" content="El Greco – Website-Entwurf von GT Solutions">
+<meta property="og:description" content="Griechische Küche in der Ingolstädter Altstadt – online bestellen, Tisch reservieren, feiern.">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=GFS+Didot&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+/* VOICE: eine Taverne am Abend – theatralisch, appetitlich, wenige Worte, große Schrift.
+   IDEA: ein Abend am Tisch, Teller für Teller: jedes Gericht bekommt seine Szene, die Zutaten fliegen beim Scrollen heraus.
+   PICTURE: gezeichnete Teller (Gyros Metaxa, El Greco-Teller, Saganaki, Bauernsalat, Tzatziki & Ouzo) mit Zutaten in der Tiefe.
+   COLOUR and TYPE: Nachtblau der Ägäis, jedes Gericht mit eigenem Licht (Bernstein, Glut, Gold, Olive, Eis); GFS Didot für Namen, Inter für Text.
+   LAYOUT: Szenen im Vollbild, dann ein seitlicher Bestell-Streifen, Fotos, die Karte auf Kalkweiß, Feiern, ein Schlusswort, Bestellen und Infos. */
+:root{color-scheme:dark;--bg:#07111f;--ink:#f3f1ec;--mute:#b7c1cf;--blue:#2c6fd0;--sun:#f2b134}
+*{box-sizing:border-box;min-width:0}
+html{scroll-padding-top:72px}
+body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.55 Inter,system-ui,sans-serif;overflow-x:clip}
+a{color:inherit}
+nav{position:fixed;inset:0 0 auto;z-index:20;display:flex;align-items:center;gap:20px;padding:12px max(5vw,16px);background:linear-gradient(rgba(4,10,20,.8),transparent)}
+nav .logo{font:400 28px/1 'GFS Didot',serif;text-decoration:none;margin-right:auto}
+nav a.l{text-decoration:none;color:var(--mute);font-size:15px}nav a.l:hover{color:var(--ink)}
+.btn{display:inline-flex;align-items:center;justify-content:center;min-height:44px;padding:0 22px;border-radius:999px;background:var(--sun);color:#0b1626;text-decoration:none;font-weight:600;font-size:15px;border:0;white-space:nowrap;cursor:pointer;font-family:inherit}
+.btn.ghost{background:transparent;color:var(--ink);border:1.5px solid rgba(243,241,236,.5)}
+.btn:focus-visible,a:focus-visible,input:focus-visible,select:focus-visible,button:focus-visible{outline:3px solid #ffd27a;outline-offset:3px}
+.hero{position:relative;min-height:100vh;min-height:100svh;display:grid;align-items:center;padding:96px max(5vw,16px) 64px;overflow:hidden;background:linear-gradient(90deg,#07111f 0,rgba(7,17,31,.92) 35%,rgba(7,17,31,.45) 70%,rgba(7,17,31,.6)),url('https://d8j0ntlcm91z4.cloudfront.net/user_3FGw5P8xBkfK8p8SNSjW3qLp5wy/hf_20261120_110649_1374d73f-cbf3-4d45-aabb-de0e01ec9d1b.png') center/cover no-repeat,radial-gradient(circle at 78% 72%,#1d4f91 0,#0c2445 45%,#07111f 80%)}
+.hero .txt{position:relative;z-index:2;max-width:760px}
+.hero .kick{color:#ffd99a;font-size:15px;margin:0 0 6px}
+.hero h1{width:max-content;max-width:100%;font:400 clamp(84px,16vw,220px)/.88 'GFS Didot',serif;margin:0 0 18px;background:linear-gradient(#fff 35%,#9cc3f0);-webkit-background-clip:text;background-clip:text;color:transparent;filter:drop-shadow(0 6px 24px rgba(0,0,0,.55))}
+.hero p.lead{font-size:clamp(17px,1.6vw,20px);color:var(--mute);max-width:440px;margin:0 0 26px}
+.cta{display:flex;flex-wrap:wrap;gap:12px}
+.hero .pz{position:absolute;right:-20vw;bottom:-22vh;width:min(70vw,84vh);aspect-ratio:1;z-index:1;filter:drop-shadow(0 40px 60px rgba(0,0,0,.6))}
+.hero .pz svg{width:100%;height:100%;animation:spin 120s linear infinite}
+.hint{position:absolute;left:50%;bottom:18px;transform:translateX(-50%);z-index:2;color:var(--mute);font-size:13px;white-space:nowrap}
+@keyframes spin{to{transform:rotate(360deg)}}
+.meander{height:16px;background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='32' height='16'%3E%3Cpath d='M0 15h32M0 1h32M3 15V5h10v7H8V8h3M19 15V5h10v7h-5V8h3' fill='none' stroke='%23f2b134' stroke-width='1.6'/%3E%3C/svg%3E") repeat-x;opacity:.6}
+.film{height:260vh;position:relative}
+.fstage{background:#07111f}
+.fstage video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.fstage::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(7,17,31,.55),transparent 30%,transparent 70%,rgba(7,17,31,.7))}
+.ftxt{position:absolute;z-index:2;left:0;right:0;bottom:clamp(30px,9vh,110px);margin:0;text-align:center;font:400 clamp(44px,8vw,120px)/1 'GFS Didot',serif;text-shadow:0 6px 30px rgba(0,0,0,.6);transition:opacity .2s}
+.dish{height:240vh;position:relative}
+.fl{opacity:0}
+.stage{position:sticky;top:0;height:100vh;height:100svh;overflow:hidden;display:grid;place-items:center;background:radial-gradient(circle at 50% 50%,color-mix(in srgb,var(--g) 40%,transparent) 0,transparent 58%),var(--bg2)}
+.scene{width:min(84vw,64vh);aspect-ratio:1;overflow:visible;position:relative;z-index:1}
+.info{position:absolute;z-index:3;left:max(5vw,16px);top:clamp(84px,16vh,160px);max-width:310px;text-shadow:0 2px 14px rgba(0,0,0,.7)}
+.info .no{font:400 48px/1 'GFS Didot',serif;color:var(--g);display:block}
+.info h3{font:400 28px/1.1 'GFS Didot',serif;margin:6px 0 8px}
+.info p{margin:0 0 10px;color:var(--mute);font-size:15px}
+.info b{font-size:18px;white-space:nowrap}
+.big{position:absolute;z-index:2;left:0;right:0;bottom:clamp(28px,8vh,100px);margin:0;text-align:center;font:400 clamp(56px,14vw,200px)/.9 'GFS Didot',serif;background:linear-gradient(#fff 40%,var(--g));-webkit-background-clip:text;background-clip:text;color:transparent;filter:drop-shadow(0 12px 30px rgba(0,0,0,.6))}
+.hz{height:300vh;position:relative}
+.hz .stage{background:radial-gradient(circle at 20% 30%,#123766,transparent 55%),#081426;place-items:center start}
+.hz h2{position:absolute;top:clamp(80px,13vh,130px);left:max(5vw,16px);margin:0;font:400 clamp(34px,5vw,58px)/1.05 'GFS Didot',serif;text-wrap:balance;max-width:16ch}
+.track{display:flex;gap:clamp(16px,3vw,40px);padding:0 max(5vw,16px);will-change:transform;margin-top:14vh}
+.step{flex:none;width:min(78vw,420px);min-height:clamp(240px,38vh,340px);border-radius:28px;padding:28px;background:linear-gradient(160deg,#16396b,#0b1f3d);border:1px solid rgba(156,195,240,.18);display:flex;flex-direction:column;justify-content:flex-end}
+.step .w{font:400 clamp(42px,6vw,68px)/1 'GFS Didot',serif;color:var(--sun);margin-bottom:12px}
+.step p{margin:0;color:var(--mute)}
+.band{padding:clamp(48px,7vw,110px) max(5vw,16px)}
+.in{max-width:1180px;margin:0 auto}
+.photos{background:#0b1a30}
+.party{background:linear-gradient(180deg,rgba(7,17,31,.92) 0,rgba(7,17,31,.7) 45%,rgba(7,17,31,.55)),url('https://d8j0ntlcm91z4.cloudfront.net/user_3FGw5P8xBkfK8p8SNSjW3qLp5wy/hf_20261120_111224_adbd0969-5072-4071-b536-ee847655528a.png') center/cover no-repeat,#0b1a30}
+.party .pc div{background:rgba(7,17,31,.55);backdrop-filter:blur(4px)}
+.photos h2,.menu h2,.party h2{font:400 clamp(38px,5.6vw,62px)/1.02 'GFS Didot',serif;margin:0 0 10px;text-wrap:balance}
+.facts{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px;margin-top:30px}
+.facts div{border-top:2px solid var(--sun);padding-top:14px}
+.facts b{display:block;font:400 clamp(56px,8vw,96px)/1 'GFS Didot',serif;color:var(--ink)}
+.facts span{color:var(--mute)}
+.quote{margin:34px 0 0;font:400 clamp(28px,3.4vw,40px)/1.2 'GFS Didot',serif;color:#ffd99a}
+.menu{background:#f7f7f4;color:#0f2038}
+.menu .sub{margin:0 0 30px;color:#4d5d72}
+.tabs{display:flex;flex-wrap:wrap;gap:8px;margin:0 0 26px}
+.tabs button{min-height:44px;padding:0 18px;border-radius:999px;border:1.5px solid #c9d2de;background:#fff;color:#0f2038;font:600 15px Inter,sans-serif;cursor:pointer}
+.tabs button[aria-selected=true]{background:#1d4f91;border-color:#1d4f91;color:#fff}
+.cols{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:0 72px}
+.row{display:flex;align-items:baseline;gap:10px;padding:14px 0;border-bottom:1px solid rgba(15,32,56,.14)}
+.row .n{font:400 21px 'GFS Didot',serif}
+.row .ds{display:block;font:400 14px Inter,sans-serif;color:#4d5d72}
+.row .p{margin-left:auto;font-variant-numeric:tabular-nums;white-space:nowrap;font-weight:600}
+.row .t{font:600 11px Inter;background:var(--sun);color:#0b1626;border-radius:5px;padding:1px 6px;margin-left:6px;vertical-align:3px}
+.note{font-size:14px;color:#4d5d72;margin-top:20px}
+.pc{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px;margin-top:26px}
+.pc div{border:1px solid rgba(156,195,240,.22);border-radius:20px;padding:24px}
+.pc h3{font:400 24px 'GFS Didot',serif;margin:0 0 6px;color:#ffd99a}.pc p{margin:0;color:var(--mute)}
+.close{min-height:90vh;display:grid;place-items:center;text-align:center;background:radial-gradient(circle at 50% 60%,#1d4f91,#07111f 70%);overflow:hidden;padding:40px 16px}
+.close .w{display:block;font:400 clamp(72px,15vw,200px)/.95 'GFS Didot',serif;opacity:0;transform:translateY(60px);transition:opacity .9s ease,transform .9s cubic-bezier(.2,.8,.2,1)}
+.close .w:nth-child(2){transition-delay:.18s;color:var(--sun)}
+.close .w:nth-child(3){transition-delay:.36s;font-size:clamp(20px,2.4vw,28px);color:var(--mute);margin-top:18px}
+.close.on .w{opacity:1;transform:none}
+.order{background:var(--blue);color:#fff}
+.order .in{display:grid;grid-template-columns:minmax(0,1.2fr) minmax(0,1fr);gap:40px;align-items:start}
+.order h2{font:400 clamp(40px,6vw,66px)/1 'GFS Didot',serif;margin:0 0 12px;text-wrap:balance}
+.order p{margin:0 0 20px;font-size:17px;max-width:520px;color:#e6eefb}
+.order .btn{min-height:56px;font-size:17px}
+form{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px;background:rgba(7,17,31,.28);padding:22px;border-radius:22px}
+form h3{grid-column:1/-1;margin:0;font:400 28px 'GFS Didot',serif}
+label{display:grid;gap:6px;font-weight:600;font-size:14px}
+input,select{font:16px Inter,sans-serif;min-height:46px;padding:8px 12px;border-radius:10px;border:1.5px solid rgba(255,255,255,.45);background:rgba(255,255,255,.12);color:#fff}
+select option{color:#0f2038}.full{grid-column:1/-1}
+.ok{display:none;grid-column:1/-1;background:var(--sun);color:#0b1626;border-radius:12px;padding:12px 14px;font-weight:600;margin:0}
+.info2{background:#07111f}
+.info2 .in{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:32px}
+.info2 h3{font:400 26px/1.1 'GFS Didot',serif;margin:0 0 10px;color:#ffd99a}
+.info2 p{margin:0;color:var(--mute)}
+.hours{width:100%;border-collapse:collapse;color:var(--mute)}.hours td{padding:4px 0}.hours td+td{text-align:right;white-space:nowrap}
+footer{padding:28px max(5vw,16px);border-top:1px solid rgba(243,241,236,.12);color:var(--mute);font-size:13px;display:flex;flex-wrap:wrap;gap:8px 24px;justify-content:space-between}
+@media(max-width:760px){
+ nav a.l{display:none}.hint{display:none}
+ .info{max-width:72vw;top:84px}.info .no{font-size:36px}.info h3{font-size:22px}.info p{font-size:14px}
+ .scene{width:min(92vw,52vh);margin-top:8vh}
+ .cols,.order .in,.info2 .in,.pc{grid-template-columns:minmax(0,1fr)}
+ .facts{grid-template-columns:1fr}
+ form{grid-template-columns:1fr}
+ .hero{align-items:start;padding-top:120px;background:linear-gradient(180deg,rgba(7,17,31,.85) 0,rgba(7,17,31,.55) 45%,rgba(7,17,31,.15) 75%),url('https://d8j0ntlcm91z4.cloudfront.net/user_3FGw5P8xBkfK8p8SNSjW3qLp5wy/hf_20261120_111224_6068e1a1-a601-430a-af87-9d3b296a1b41.png') center bottom/cover no-repeat,#07111f}.hero .pz{display:none}
+}
+@media(prefers-reduced-motion:reduce){
+ .fl{opacity:1}
+ .hero .pz svg{animation:none}
+ .dish{height:auto}.dish .stage{position:relative;height:100svh}
+ .hz{height:auto}.hz .stage{position:relative;height:auto;padding:180px 0 60px}.track{flex-wrap:wrap;transform:none!important}
+ .close .w{opacity:1;transform:none;transition:none}
+}
+</style>
+</head>
+<body>
+<svg width="0" height="0" style="position:absolute" aria-hidden="true"><defs>
+<radialGradient id="gPlate"><stop offset="0" stop-color="#fbfbf9"/><stop offset=".72" stop-color="#e9ecef"/><stop offset="1" stop-color="#aeb6c2"/></radialGradient>
+<radialGradient id="gMeat" cx=".4" cy=".35"><stop offset="0" stop-color="#c47a3c"/><stop offset="1" stop-color="#7a3d16"/></radialGradient>
+<radialGradient id="gCheese" cx=".4" cy=".3"><stop offset="0" stop-color="#ffd77a"/><stop offset=".7" stop-color="#e8a33a"/><stop offset="1" stop-color="#a8611b"/></radialGradient>
+<radialGradient id="gTz" cx=".4" cy=".35"><stop offset="0" stop-color="#ffffff"/><stop offset="1" stop-color="#dfe6e2"/></radialGradient>
+<clipPath id="cp"><circle r="182"/></clipPath><filter id="fSh" x="-50%" y="-50%" width="200%" height="200%"><feGaussianBlur stdDeviation="18"/></filter>
+<g id="plate"><ellipse cx="6" cy="16" rx="190" ry="190" fill="#000" opacity=".45" filter="url(#fSh)"/><circle r="190" fill="url(#gPlate)"/><circle r="150" fill="#f6f7f5" stroke="#d5dbe2" stroke-width="2"/><circle r="176" fill="none" stroke="#1d4f91" stroke-width="5" stroke-dasharray="14 8"/></g>
+<g id="strip"><path d="M-22-5C-8-12 8-2 22-7L20 5C6 10-8 0-20 7Z" fill="url(#gMeat)"/><path d="M-18-4C-6-8 6-2 18-5" stroke="#e3a568" stroke-width="2" fill="none" opacity=".7"/></g>
+<g id="fry"><rect x="-4" y="-20" width="8" height="40" rx="2" fill="#f4c64f"/><rect x="-4" y="-20" width="3" height="40" fill="#fde28a"/></g>
+<g id="cube"><rect x="-13" y="-13" width="26" height="26" rx="6" fill="url(#gMeat)"/><path d="M-9-8h12" stroke="#2a1306" stroke-width="3" opacity=".5"/></g>
+<g id="pep"><path d="M-12-10Q0-16 12-10L10 10Q0 14-10 10Z" fill="#3f9a3a"/></g>
+<g id="cuke"><circle r="16" fill="#2f7a35"/><circle r="13" fill="#d9efb8"/><g fill="#a9cf7c"><ellipse cx="-4" cy="-3" rx="2" ry="3"/><ellipse cx="4" cy="-3" rx="2" ry="3"/><ellipse cx="0" cy="5" rx="3" ry="2"/></g></g>
+<g id="tomw"><path d="M-18 8A20 20 0 0 1 18 8Z" fill="#d6301f"/><path d="M-13 6A14 14 0 0 1 13 6Z" fill="#f2694d"/><g fill="#f7d26a"><circle cx="-5" cy="2" r="2"/><circle cx="5" cy="2" r="2"/></g></g>
+<g id="olive"><ellipse rx="10" ry="13" fill="#2b2333"/><ellipse cx="-3" cy="-5" rx="3" ry="4" fill="#6a5a78" opacity=".7"/></g>
+<g id="onion"><circle r="15" fill="none" stroke="#c99ad6" stroke-width="4"/><circle r="9" fill="none" stroke="#e7cdef" stroke-width="3"/></g>
+<g id="feta"><rect x="-26" y="-20" width="52" height="40" rx="4" fill="#fbfaf3"/><path d="M-26-12h52" stroke="#e2dfd0" stroke-width="2"/><g fill="#7a8f3a"><circle cx="-10" cy="-2" r="2"/><circle cx="8" cy="6" r="2"/><circle cx="12" cy="-6" r="1.6"/></g></g>
+<g id="lemon"><path d="M-20 0A20 20 0 0 1 20 0Z" fill="#f6d33b"/><path d="M-15 -1A15 15 0 0 1 15-1Z" fill="#fff3a8"/><path d="M0-1V-14M0-1L-10-10M0-1L10-10" stroke="#f6d33b" stroke-width="2"/></g>
+<g id="leaf"><path d="M0-14C9-7 9 7 0 14C-9 7-9-7 0-14Z" fill="#5c8f3e"/><path d="M0-12V12" stroke="#3d6a28" stroke-width="1.5"/></g>
+<g id="garlic"><path d="M0-16C10-8 12 8 0 14C-12 8-10-8 0-16Z" fill="#f4efe2"/><path d="M0-16V14" stroke="#ddd3bd" stroke-width="1.5"/></g>
+<g id="ice"><rect x="-14" y="-14" width="28" height="28" rx="6" fill="#dff1ff" opacity=".85"/><path d="M-8-8l8 3" stroke="#fff" stroke-width="3"/></g>
+<g id="pita"><path d="M-30 18L0-28 30 18Z" fill="#e9b979"/><g fill="#b97a3b"><circle cx="-6" cy="4" r="3"/><circle cx="8" cy="-4" r="2.5"/><circle cx="4" cy="10" r="3"/></g></g>
+</defs></svg>
+
+<nav aria-label="Hauptmenü">
+ <a class="logo" href="#top">El Greco</a>
+ <a class="l" href="#karte">Speisekarte</a>
+ <a class="l" href="#feiern">Feiern</a>
+ <a class="l" href="#kontakt">Kontakt</a>
+ <a class="btn js-order" href="#bestellen">Online bestellen</a>
+</nav>
+
+<header class="hero" id="top">
+ <div class="txt">
+  <p class="kick">Griechische Küche · Ingolstadt · seit über 40 Jahren</p>
+  <h1>El Greco</h1>
+  <p class="lead">Gyros mit Metaxasauce, Souvlaki vom Grill und ein Ouzo zum Abschied – nach Familienrezepten, mitten in der Altstadt.</p>
+  <div class="cta"><a class="btn js-order" href="#bestellen">Online bestellen</a><a class="btn ghost" href="#reservieren">Tisch reservieren</a></div>
+ </div>
+ <div class="pz" aria-hidden="true"><svg viewBox="-200 -200 400 400" id="heroPlate"></svg></div>
+ <span class="hint">Scrollen – der Abend beginnt · Beispielbilder</span>
+</header>
+<div class="meander"></div>
+
+<section class="film" id="film" aria-label="Ein Abend bei El Greco">
+ <div class="stage fstage"><video id="fv" muted playsinline preload="auto"></video><p class="ftxt" id="ftxt">Ein Abend bei El Greco</p></div>
+</section>
+<main id="dishes"></main>
+
+<section class="hz" id="ablauf" aria-label="So bestellen Sie">
+ <div class="stage"><h2>Von unserer Küche direkt zu Ihnen</h2>
+  <div class="track" id="track">
+   <div class="step"><span class="w">Wählen</span><p>Die ganze Karte online – mit Preisen und Ihren Wünschen an die Küche.</p></div>
+   <div class="step"><span class="w">Bezahlen</span><p>Online mit Karte oder Wallet. An der Theke wartet niemand mehr.</p></div>
+   <div class="step"><span class="w">Abholen</span><p>Zur Uhrzeit, die Sie wählen – heiß und frisch aus der Küche.</p></div>
+   <div class="step"><span class="w">Liefern</span><p>Oder direkt nach Hause – bestellt bei uns, zu unseren Preisen.</p></div>
+  </div>
+ </div>
+</section>
+
+<section class="band photos" id="haus"><div class="in">
+ <h2>Seit über 40 Jahren El Greco</h2>
+ <p style="color:var(--mute);margin:0;max-width:60ch">Eine griechische Taverne mitten in der Ingolstädter Altstadt – mit Familienrezepten, einem Koch mit langjähriger Erfahrung und Platz für jede Runde.</p>
+ <div class="facts">
+  <div><b>40+</b><span>Jahre El Greco in Ingolstadt</span></div>
+  <div><b>200+</b><span>Plätze im Restaurant</span></div>
+  <div><b>20</b><span>Gäste im separaten Nebenraum</span></div>
+ </div>
+ <p class="quote">„Wie bei Mama!“</p>
+</div></section>
+
+<section class="band menu" id="karte"><div class="in">
+ <h2>Die Karte</h2>
+ <p class="sub">Eine Auswahl – die vollständige Karte mit allen Preisen folgt.</p>
+ <div class="tabs" role="tablist" id="tabs"></div>
+ <div class="cols" id="rows"></div>
+ <p class="note">Preise stehen bei den Empfehlungen des Hauses.</p>
+</div></section>
+
+<section class="band party" id="feiern"><div class="in">
+ <h2>Feiern bei El Greco</h2>
+ <p style="color:var(--mute);margin:0;max-width:60ch">Geburtstag, Firmenfeier oder Familienfest – mit großen Platten für die ganze Runde.</p>
+ <div class="pc">
+  <div><h3>Ein Teil des Restaurants</h3><p>Für größere Runden, mitten im Leben der Taverne.</p></div>
+  <div><h3>Separater Nebenraum</h3><p>Für etwa 20 Personen, ungestört.</p></div>
+  <div><h3>Das ganze Haus</h3><p>Exklusiv für Ihre Gesellschaft.</p></div>
+ </div>
+</div></section>
+
+<section class="close" id="close" aria-label="Kali orexi"><div><span class="w">Kalí</span><span class="w">órexi!</span><span class="w">Guten Appetit – wir freuen uns auf Sie.</span></div></section>
+
+<section class="band order" id="bestellen"><div class="in">
+ <div>
+  <h2>Bestellen Sie direkt bei uns</h2>
+  <p>Ihre Bestellung geht ohne Umweg in unsere Küche. Zum Abholen oder nach Hause.</p>
+  <div class="cta"><a class="btn js-order" href="#bestellen">Jetzt online bestellen</a><a class="btn ghost" href="tel:+4984134603">Anrufen: 0841 34603</a></div>
+ </div>
+ <form id="reservieren">
+  <h3>Tisch reservieren</h3>
+  <label>Datum<input type="date" id="r-date" required></label>
+  <label>Uhrzeit<select id="r-time"></select></label>
+  <label>Personen<select id="r-pers"></select></label>
+  <label>Name<input id="r-name" autocomplete="name" required></label>
+  <label class="full">Telefon oder E-Mail<input id="r-contact" required></label>
+  <button class="btn full" type="submit">Reservierung anfragen</button>
+  <p class="ok" id="r-ok" role="status"></p>
+ </form>
+</div></section>
+
+<section class="band info2" id="kontakt"><div class="in">
+ <div><h3>Adresse</h3><p>El Greco<br>Theresienstraße 22<br>85049 Ingolstadt<br><br>Telefon <a href="tel:+4984134603">0841 34603</a><br>info@el-greco-ingolstadt.de</p></div>
+ <div><h3>Öffnungszeiten</h3><table class="hours"><tr><td>Montag</td><td>Ruhetag</td></tr><tr><td>Di – Sa</td><td>11:30–14:30 · 17:00–22:00</td></tr><tr><td>Sonntag</td><td>11:30–21:00</td></tr></table></div>
+ <div><h3>Anfahrt</h3><p>Mitten in der Altstadt, nahe dem Münster. Parken in der Tiefgarage Münster, 4–5 Gehminuten.</p></div>
+</div></section>
+
+<footer><span>El Greco · Theresienstraße 22 · 85049 Ingolstadt · Impressum · Datenschutz</span><span>Website-Entwurf von GT Solutions · Online-Bestellung über GastroLive · Bilder: Beispielbilder, KI-generiert</span></footer>
+
+<script>
+{
+ /* GastroLive-Bestelllink (Demo-Tenant) hier eintragen; leer = Buttons springen zu „Bestellen“ */
+ const BESTELL_URL = '';
+ if (BESTELL_URL) document.querySelectorAll('.js-order').forEach(a => { a.href = BESTELL_URL; a.target = '_blank'; a.rel = 'noopener'; });
+
+ const IMG = ['https://d8j0ntlcm91z4.cloudfront.net/user_3FGw5P8xBkfK8p8SNSjW3qLp5wy/hf_20261120_110648_7b21bd68-7b3f-4214-809f-3a136b547e6d.png', 'https://d8j0ntlcm91z4.cloudfront.net/user_3FGw5P8xBkfK8p8SNSjW3qLp5wy/hf_20261120_110648_380155b0-5a69-466c-952a-9c1a69758cd7.png', 'https://d8j0ntlcm91z4.cloudfront.net/user_3FGw5P8xBkfK8p8SNSjW3qLp5wy/hf_20261120_110648_aecabfaf-282e-4cb5-a397-4520f997a36b.png', 'https://d8j0ntlcm91z4.cloudfront.net/user_3FGw5P8xBkfK8p8SNSjW3qLp5wy/hf_20261120_110650_5e2683eb-2ccd-4320-af33-e9537af81acb.png', 'https://d8j0ntlcm91z4.cloudfront.net/user_3FGw5P8xBkfK8p8SNSjW3qLp5wy/hf_20261120_110652_a28c1d8f-9f7c-498c-915c-1545e8a2c478.png']; /* Beispielbilder (KI, Higgsfield) – später durch echte Fotos ersetzen */
+ const pic = i => `<image href="${IMG[i]}" x="-182" y="-182" width="364" height="364" clip-path="url(#cp)" preserveAspectRatio="xMidYMid slice"/>`;
+ const u = (id,x,y,s=1,r=0) => `<use href="#${id}" transform="translate(${x} ${y}) rotate(${r}) scale(${s})"/>`;
+ /* fly: [id, x, y, scale, rot, dx, dy, drot] – Zutaten, die beim Scrollen herausfliegen */
+ const dishes = [
+  {no:'I',name:'Gyros Metaxa',desc:'Überbacken mit Metaxasauce, dazu Pommes frites.',price:'21,90 €',big:'Gyros',g:'#f2a43a',bg:'#1a1007',
+   base:()=>`<ellipse cx="-10" cy="10" rx="105" ry="85" fill="#e58a2e"/><ellipse cx="-14" cy="4" rx="88" ry="68" fill="#f3b04d" opacity=".9"/>`+[[-40,-20,20],[0,-30,-10],[30,0,30],[-30,25,-20],[10,30,10],[-60,5,60]].map(([x,y,r])=>u('strip',x,y,1.2,r)).join('')+[[90,-60,20],[110,-30,5],[100,10,-15],[120,40,30]].map(([x,y,r])=>u('fry',x,y,1,r)).join(''),
+   fly:[['strip',-30,-10,1.3,20,-260,-200,140],['strip',20,-20,1.2,-30,240,-230,-120],['fry',100,-40,1.1,10,300,-60,200],['fry',110,20,1,40,280,160,-160],['onion',-80,60,1,0,-260,180,90],['onion',60,70,.9,0,200,230,-90],['strip',-10,40,1.1,60,-120,260,100],['leaf',40,-70,1.2,20,120,-280,160]]},
+  {no:'II',name:'El Greco-Teller',desc:'Souvlaki, Gyros, Leber, Bratkartoffeln und Tzatziki.',price:'20,90 €',big:'El Greco',g:'#ff6a3a',bg:'#1a0a07',
+   base:()=>`<path d="M-140-40L140 40" stroke="#8a6b48" stroke-width="5"/><path d="M-140 30L140 -50" stroke="#8a6b48" stroke-width="5"/>`+[-90,-45,0,45,90].map((x,i)=>u(i%2?'pep':'cube',x,x*.29,1.1,i*12)).join('')+[-90,-45,0,45,90].map((x,i)=>u(i%2?'cube':'pep',x,-x*.29-10,1.1,-i*10)).join('')+`<circle cx="-70" cy="90" r="34" fill="url(#gTz)"/>`+u('leaf',-70,88,.6,30)+u('pita',80,95,1,10),
+   fly:[['cube',-45,-20,1.2,0,-280,-220,180],['cube',45,10,1.2,0,260,-200,-160],['pep',0,-10,1.2,0,40,-300,120],['cube',90,15,1.1,0,300,120,200],['pep',-90,-40,1.1,0,-300,40,-150],['lemon',30,80,1.2,0,180,260,90],['pita',-20,100,.9,20,-200,260,-60],['leaf',-120,40,1.1,0,-240,220,140]]},
+  {no:'III',name:'Saganaki',desc:'Goldbraun gebackener Schafskäse mit Zitrone.',price:'',big:'Saganaki',g:'#f2c94c',bg:'#14110a',
+   base:()=>`<circle r="125" fill="#2b2f36"/><circle r="112" fill="#3a3f48"/><rect x="120" y="-14" width="90" height="28" rx="12" fill="#2b2f36"/><rect x="-78" y="-56" width="156" height="112" rx="18" fill="url(#gCheese)"/><path d="M-60-30q30-12 70 4M-40 20q40 10 80-6" stroke="#9c5615" stroke-width="5" fill="none" opacity=".6"/>`+u('lemon',40,70,1.3,180),
+   fly:[['lemon',-60,-60,1.3,0,-280,-200,150],['lemon',60,-60,1.2,40,260,-220,-160],['leaf',-90,30,1.3,0,-260,160,140],['leaf',80,40,1.2,30,260,180,-120],['leaf',0,-80,1,0,30,-300,200],['garlic',-30,80,1.1,0,-120,260,90]]},
+  {no:'IV',name:'Griechischer Bauernsalat',desc:'Tomaten, Gurken, Zwiebeln, Oliven, Peperoni und Schafskäse.',price:'',big:'Choriatiki',g:'#8cc152',bg:'#0b140a',
+   base:()=>[[-70,-50,0],[60,-60,40],[-80,50,-30],[70,55,20],[0,-90,10]].map(([x,y,r])=>u('tomw',x,y,1.3,r)).join('')+[[-20,-60],[40,0],[-60,0],[10,70],[90,-10]].map(([x,y])=>u('cuke',x,y,1.1)).join('')+[[-40,30],[50,-30],[-10,95],[100,40]].map(([x,y])=>u('olive',x,y,1)).join('')+u('onion',-100,-10,1.1)+u('feta',0,-5,1.8,8)+u('leaf',10,-30,.7,40),
+   fly:[['tomw',-60,-40,1.4,0,-280,-220,160],['cuke',40,-20,1.3,0,260,-240,-140],['olive',-40,40,1.2,0,-260,200,100],['olive',60,30,1.2,0,280,180,-100],['onion',-90,0,1.2,0,-300,0,120],['feta',0,0,1,10,0,-300,60],['tomw',70,60,1.3,30,220,260,-160],['cuke',-20,80,1.2,0,-100,290,90]]},
+  {no:'V',name:'Tzatziki & Ouzo',desc:'Hausgemacht mit Gurke und Knoblauch – und ein Ouzo zum Abschied.',price:'',big:'Ouzo',g:'#9cc3f0',bg:'#071425',
+   base:()=>`<circle cx="-40" cy="10" r="105" fill="#dfe6ee"/><circle cx="-40" cy="10" r="92" fill="url(#gTz)"/><path d="M-90 0q30-20 60 0t60 0" stroke="#c7d6cf" stroke-width="5" fill="none"/>`+u('leaf',-60,-10,.9,30)+u('leaf',-20,30,.8,-20)+u('cuke',-10,-30,.8)+`<rect x="90" y="-90" width="70" height="150" rx="10" fill="#e8f3ff" opacity=".35" stroke="#fff" stroke-width="3"/><rect x="94" y="-30" width="62" height="86" rx="6" fill="#f4f8fb" opacity=".8"/>`+u('ice',115,-10,.9,15)+u('ice',135,20,.8,-20),
+   fly:[['cuke',-40,0,1.3,0,-280,-200,160],['garlic',-80,40,1.3,0,-260,200,120],['leaf',-20,-40,1.3,0,-60,-300,140],['ice',125,-10,1.2,0,280,-200,-180],['ice',130,30,1.1,0,260,220,160],['cuke',0,60,1.1,0,60,280,-100],['garlic',40,-70,1,0,220,-260,90]]}
+ ];
+ document.getElementById('dishes').innerHTML = dishes.map((d,i)=>`
+  <section class="dish" style="--g:${d.g};--bg2:${d.bg}" aria-label="${d.name}">
+   <div class="stage">
+    <div class="info"><span class="no">${d.no}</span><h3>${d.name}</h3><p>${d.desc}</p>${d.price?`<b>${d.price}</b>`:''}</div>
+    <svg class="scene" viewBox="-200 -200 400 400" aria-hidden="true">
+     <g class="pl">${u('plate',0,0)}<g>${d.base()}</g>${pic(i)}</g>
+     ${d.fly.map(f=>`<g class="fl" data-f="${f.slice(5).join(',')}"><g transform="translate(${f[1]} ${f[2]}) rotate(${f[4]}) scale(${f[3]})"><use href="#${f[0]}"/></g></g>`).join('')}
+    </svg>
+    <p class="big" aria-hidden="true">${d.big}</p>
+   </div>
+  </section>`).join('');
+ document.getElementById('heroPlate').innerHTML = u('plate',0,0) + dishes[0].base() + pic(0);
+
+ const karte = {
+  'Vorspeisen':[['Tzatziki','Joghurt mit Gurken und Knoblauch'],['Saganaki','Gebackener Schafskäse'],['Gebratene Peperoni','Mit Öl, Essig, Knoblauch und Tzatziki'],['Florinis-Paprika','Gefüllt mit Feta und Knoblauch'],['Kalte Vorspeisenplatte','Griechische Spezialitäten zum Teilen'],['Pita','Griechisches Brot – auch mit Knoblauch']],
+  'Salate':[['Kalamari Salat','Frischer Salat mit Kalamari','10,50 €',1],['Griechischer Bauernsalat','Tomaten, Gurken, Zwiebeln, Oliven und Schafskäse'],['Fitness-Salat','Grüner Salat mit Putenstreifen vom Grill']],
+  'Vom Grill':[['El Greco','Souvlaki, Gyros, Leber, Bratkartoffeln und Tzatziki','20,90 €',1],['Artemis-Platte','2 Lammkoteletts, Gyros, 1 Spieß, Pommes frites und Tzatziki','21,90 €',1],['Souvlaki','2 Fleischspieße mit Pommes frites und Tzatziki'],['Lammkoteletts','Mit Tzatziki und Bratkartoffeln'],['Rhodos für 2','Grillplatte für zwei Personen'],['Olympia für 4','Die große Platte für die ganze Runde']],
+  'Überbacken & Pfanne':[['Gyros Metaxa','Überbacken mit Metaxasauce, dazu Pommes frites','21,90 €',1],['Puten-Sirtaki','Mit Fetaauflauf, Tomaten, Paprika, Oliven, Knoblauch und Pommes frites','22,90 €',1],['Gyros-Pfanne','Geschnetzeltes mit Zwiebeln'],['Überbackene Lammhaxe','Mit Spaghetti und Käse überbacken']],
+  'Fisch':[['Kalamari','Mit Butterreis und griechischer Sauce'],['Fischplatte für 2','Verschiedene Fischsorten mit Butterreis']],
+  'Pizza & Kinder':[['Pizza Gyros','Mit Tomatensauce und Käse','13,80 €',1],['Kinder-Gyros','Kleine Portion mit Pommes frites']]
+ };
+ const names = Object.keys(karte), tabs = document.getElementById('tabs'), rows = document.getElementById('rows');
+ tabs.innerHTML = names.map((n,i)=>`<button role="tab" id="t${i}" aria-selected="${!i}">${n}</button>`).join('');
+ const show = i => { tabs.querySelectorAll('button').forEach((b,j)=>b.setAttribute('aria-selected',j===i));
+  rows.innerHTML = karte[names[i]].map(([n,d,p,t])=>`<div class="row"><span><span class="n">${n}</span>${t?'<span class="t">Empfehlung</span>':''}<span class="ds">${d}</span></span><span class="p">${p||''}</span></div>`).join(''); };
+ tabs.addEventListener('click', e => { const b = e.target.closest('button'); if (b) show(+b.id.slice(1)); });
+ show(0);
+
+ const times = ['11:30','12:00','12:30','13:00','13:30','17:00','17:30','18:00','18:30','19:00','19:30','20:00','20:30','21:00'];
+ document.getElementById('r-time').innerHTML = times.map(t=>`<option>${t}</option>`).join('');
+ document.getElementById('r-pers').innerHTML = Array.from({length:12},(_,i)=>`<option>${i+1}</option>`).join('')+'<option>mehr als 12</option>';
+ const rd = document.getElementById('r-date'); rd.valueAsDate = new Date(); rd.min = rd.value;
+ document.getElementById('reservieren').addEventListener('submit', e => {
+  e.preventDefault(); const ok = document.getElementById('r-ok'); const day = new Date(rd.value+'T12:00');
+  ok.textContent = day.getDay()===1 ? 'Montag ist Ruhetag – bitte wählen Sie einen anderen Tag.'
+   : `Danke, ${document.getElementById('r-name').value}! Ihre Anfrage für ${document.getElementById('r-pers').value} Person(en) am ${day.toLocaleDateString('de-DE')} um ${document.getElementById('r-time').value} Uhr ist eingegangen. (Demo)`;
+  ok.style.display = 'block';
+ });
+
+ const still = matchMedia('(prefers-reduced-motion: reduce)').matches;
+ const secs = [...document.querySelectorAll('.dish')], hz = document.getElementById('ablauf'), track = document.getElementById('track');
+ const ease = t => t<.5 ? 2*t*t : 1-(-2*t+2)**2/2;
+ const frame = () => {
+  const vh = innerHeight;
+  for (const s of secs) {
+   const r = s.getBoundingClientRect(); const p = Math.min(1, Math.max(0, -r.top / (r.height - vh))); const e = ease(p);
+   s.querySelector('.pl').setAttribute('transform', `rotate(${p*40}) scale(${1 - p*.08})`);
+   for (const f of s.querySelectorAll('.fl')) { const [dx,dy,dr] = f.dataset.f.split(',').map(Number); f.setAttribute('transform', `translate(${dx*e} ${dy*e}) rotate(${dr*e})`); f.style.opacity = Math.min(1, e*3); }
+   const b = s.querySelector('.big'); b.style.transform = `translateY(${(1-e)*60}px)`; b.style.opacity = .25 + e*.75;
+  }
+  const r = hz.getBoundingClientRect(); const p = Math.min(1, Math.max(0, -r.top / (r.height - vh)));
+  track.style.transform = `translateX(${-p * Math.max(0, track.scrollWidth - innerWidth + 40)}px)`;
+ };
+ let ticking = false;
+ if (!still) { addEventListener('scroll', () => { if (!ticking) { ticking = true; requestAnimationFrame(() => { frame(); ticking = false; }); } }, {passive:true}); addEventListener('resize', frame); frame(); }
+
+ /* Video zum Scrollen (Beispiel, KI-generiert); leer = Abschnitt entfällt */
+ const VIDEO_URL = 'https://d8j0ntlcm91z4.cloudfront.net/user_3FGw5P8xBkfK8p8SNSjW3qLp5wy/hf_20261120_111226_8aa477e6-9e4f-44fa-b70e-38e1801e6dbd.mp4';
+ const film = document.getElementById('film'), fv = document.getElementById('fv');
+ if (!VIDEO_URL || still) film.remove(); else {
+  fv.src = VIDEO_URL; fv.addEventListener('error', () => film.remove());
+  const scrub = () => { if (!document.body.contains(film) || !fv.duration) return;
+   const r = film.getBoundingClientRect(); const p = Math.min(1, Math.max(0, -r.top / (r.height - innerHeight)));
+   fv.currentTime = p * (fv.duration - 0.05); document.getElementById('ftxt').style.opacity = 1 - p*1.4; };
+  addEventListener('scroll', () => requestAnimationFrame(scrub), {passive:true}); fv.addEventListener('loadedmetadata', scrub);
+ }
+ const cl = document.getElementById('close');
+ const io = new IntersectionObserver(es => es.forEach(x => x.isIntersecting && cl.classList.add('on')), {threshold:.35}); io.observe(cl);
+}
+</script>
+</body>
+</html>

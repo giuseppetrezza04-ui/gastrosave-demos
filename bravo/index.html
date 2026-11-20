@@ -39,7 +39,7 @@
 
   /* Header */
   header.top{position:fixed;top:24px;left:0;right:0;z-index:60;transition:background .4s}
-  header.top.solid{background:rgba(28,26,43,.93);backdrop-filter:blur(8px)}
+  header.top.solid{background:rgba(13,12,10,.94);border-bottom:1px solid rgba(203,163,92,.3);backdrop-filter:blur(8px)}
   header .inner{display:flex;align-items:center;justify-content:space-between;height:72px;max-width:1300px;margin:0 auto;padding:0 clamp(16px,4vw,40px);gap:16px}
   .logo{display:flex;flex-direction:column;line-height:1;text-decoration:none;color:var(--pietra)}
   .logo b{font-family:var(--sans);font-weight:700;font-size:15px;letter-spacing:.02em;line-height:.95}
@@ -65,7 +65,7 @@
   .piazza{position:relative;height:460vh;background:var(--notte)}
   .stage{position:sticky;top:0;height:100vh;height:100svh;overflow:hidden}
   #scrub{position:absolute;inset:0;width:100%;height:100%;display:block}
-  .shade{position:absolute;inset:0;background:linear-gradient(180deg,rgba(28,26,43,.55) 0%,rgba(28,26,43,0) 32%,rgba(28,26,43,0) 55%,rgba(28,26,43,.72) 100%);pointer-events:none}
+  .shade{position:absolute;inset:0;background:linear-gradient(180deg,rgba(13,12,10,.6) 0%,rgba(13,12,10,0) 30%,rgba(13,12,10,.05) 45%,rgba(13,12,10,.85) 100%);pointer-events:none}
   .beat{position:absolute;left:0;right:0;bottom:clamp(70px,13vh,140px);padding:0 clamp(20px,6vw,80px);color:var(--pietra);text-align:center;opacity:0;transform:translateY(24px);transition:opacity .6s,transform .6s;pointer-events:none}
   .beat.on{opacity:1;transform:none;pointer-events:auto}
   .beat .kicker{font-family:var(--sans);font-size:12px;font-weight:500;letter-spacing:.32em;text-transform:uppercase;color:var(--oro);margin-bottom:14px}
@@ -179,7 +179,7 @@
   @media (min-width:901px){footer{padding-bottom:40px}}
 
   /* Mobile bar */
-  .mbar{position:fixed;left:0;right:0;bottom:0;z-index:55;display:none;gap:10px;padding:10px 14px calc(10px + env(safe-area-inset-bottom));background:rgba(28,26,43,.95);backdrop-filter:blur(8px);transition:transform .35s}
+  .mbar{position:fixed;left:0;right:0;bottom:0;z-index:55;display:none;gap:10px;padding:10px 14px calc(10px + env(safe-area-inset-bottom));background:rgba(13,12,10,.96);backdrop-filter:blur(8px);transition:transform .35s}
   .mbar .btn{flex:1;min-height:48px;padding:0 12px}
   .mbar.hide{transform:translateY(110%)}
   @media (max-width:900px){.mbar{display:flex}}

@@ -203,9 +203,12 @@
   .ornamento{position:absolute;left:clamp(20px,6vw,90px);bottom:34px;font-family:var(--classic);font-style:italic;color:var(--oro);opacity:.75;font-size:15px}
   @media (max-width:860px){
     .stage{grid-template-columns:1fr;grid-template-rows:1fr auto;padding:96px 18px 24px;gap:14px}
-    .reel{order:-1;height:auto;width:min(78vw,52vh);justify-self:center;margin:0}
-    .beats{min-height:30vh}
-    .stage .beat{text-align:center}
+    .reel{order:-1;height:auto;width:min(74vw,46vh);justify-self:center;margin:0}
+    .beats{min-height:34vh}
+    .stage .beat{text-align:center;top:6px;transform:translateY(24px)}
+    .stage .beat.on{transform:none}
+    .stage .beat .q{font-size:clamp(40px,12vw,64px)}
+    .stage .beat .big{font-size:clamp(24px,6.4vw,34px)}
     .stage .beat .big{margin:0 auto}
     .stage .beat .ctas{justify-content:center}
     .ornamento{display:none}

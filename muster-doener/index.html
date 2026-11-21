@@ -301,6 +301,24 @@ footer{padding:26px max(4vw,16px);border-top:1px solid var(--line);color:var(--m
 {
  /* GastroLive-Bestelllink (Demo-Tenant) hier eintragen; leer = Buttons springen zu „Bestellen“ */
  const BESTELL_URL = 'https://gastro-save.com/app/r/chebello';
+ /* Personalisierung per Link: ?n=Name&o=Ort&s=Straße&p=PLZ Ort&t=Telefon (nichts wird gespeichert) */
+ const Q = new URLSearchParams(location.search), DEF = 'Anatolia Grill';
+ const clean = v => (v || '').replace(/[<>]/g, '').trim().slice(0, 60);
+ const NAME = clean(Q.get('n')) || DEF, ORT = clean(Q.get('o')) || 'Musterstadt', STR = clean(Q.get('s')), PLZ = clean(Q.get('p')), TEL = clean(Q.get('t'));
+ const esc = v => v.replace(/&/g, '&amp;').replace(/"/g, '&quot;');
+ if (NAME !== DEF || ORT !== 'Musterstadt' || STR || PLZ || TEL) {
+  const sw = [['Musterseite: Name, Speisekarte und Preise sind Beispiele', 'Entwurf: Speisekarte, Preise und Bilder sind Beispiele'], [DEF, NAME]];
+  if (STR) sw.push(['Musterstraße 1', STR]); if (PLZ) sw.push(['12345 Musterstadt', PLZ]); sw.push(['Musterstadt', ORT]); if (TEL) sw.push(['01234 567890', TEL]);
+  const tw = document.createTreeWalker(document.body, NodeFilter.SHOW_TEXT); const nodes = []; while (tw.nextNode()) nodes.push(tw.currentNode);
+  nodes.forEach(n => { if (n.parentElement.closest('script,style')) return; let t = n.nodeValue; sw.forEach(([a, b]) => { t = t.split(a).join(b); }); if (t !== n.nodeValue) n.nodeValue = t; });
+  const lg = document.querySelector('nav .logo'), ws = NAME.split(' '); lg.textContent = '';
+  if (ws.length > 1) { lg.append(ws.slice(0, -1).join(' ') + ' '); const i = document.createElement('i'); i.textContent = ws[ws.length - 1]; lg.append(i); } else lg.textContent = NAME;
+  document.title = NAME + ' – Entwurf';
+  const hr = document.querySelector('table.hours'); if (hr) { const n = document.createElement('p'); n.textContent = 'Ihre Öffnungszeiten tragen wir nach Ihren Angaben ein.'; hr.replaceWith(n); }
+  nodes.forEach(n => { if (n.nodeValue.includes('info@beispiel.de')) n.nodeValue = n.nodeValue.replace('info@beispiel.de', ''); });
+  if (TEL) document.querySelectorAll('a[href^="tel:"]').forEach(a => a.href = 'tel:' + TEL.replace(/[^0-9+]/g, ''));
+  if (STR || PLZ) document.querySelectorAll('.info .in > div:last-child').forEach(d => { d.querySelector('h3').textContent = 'So finden Sie uns'; d.querySelector('p').textContent = [STR, PLZ].filter(Boolean).join(', '); });
+ }
  if (BESTELL_URL) document.querySelectorAll('.js-order').forEach(a => { a.href = BESTELL_URL; a.target = '_blank'; a.rel = 'noopener'; });
 
  /* Beispielbilder (KI, Higgsfield) – später durch echte Fotos ersetzen */
@@ -318,7 +336,7 @@ footer{padding:26px max(4vw,16px);border-top:1px solid var(--line);color:var(--m
  const lis = [...$('idx').children];
  let cur = -1;
  const setDish = i => { if (i === cur) return; cur = i; const x = D[i];
-  $('lab').innerHTML = `<div><span class="mono">Anatolia Grill · Musterstadt</span><div class="no">0${i+1}<small>/ 05</small></div><h2>${x.a}<span class="it">${x.b}</span></h2><p>${x.d}</p>${x.p?`<span class="pr">${x.p}</span>`:''}<a class="go js-order" href="#bestellen">Bestellen →</a></div>`;
+  $('lab').innerHTML = `<div><span class="mono">${esc(NAME)} · ${esc(ORT)}</span><div class="no">0${i+1}<small>/ 05</small></div><h2>${x.a}<span class="it">${x.b}</span></h2><p>${x.d}</p>${x.p?`<span class="pr">${x.p}</span>`:''}<a class="go js-order" href="#bestellen">Bestellen →</a></div>`;
   if (BESTELL_URL) { const g = $('lab').querySelector('.go'); g.href = BESTELL_URL; g.target = '_blank'; }
   imgs.forEach((m,j)=>m.classList.toggle('on', j===i)); words.forEach((m,j)=>m.classList.toggle('on', j===i)); lis.forEach((m,j)=>m.classList.toggle('on', j===i));
   $('glow').style.setProperty('--gl', x.gl); };

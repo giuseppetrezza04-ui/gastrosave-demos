@@ -1,0 +1,396 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>Da Nonna Lina – Musterseite Pizzeria</title>
+<meta property="og:title" content="Da Nonna Lina – Musterseite von GT Solutions">
+<meta property="og:description" content="Pizza aus dem Holzofen und hausgemachte Pasta – online bestellen, Tisch reservieren, feiern.">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;0,9..144,900;1,9..144,400;1,9..144,600&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@500&display=swap" rel="stylesheet">
+<style>
+/* Aufbau nach Referenz-Video: Gerichte, die explodieren · riesige Namen · Index rechts · Text mit Mini-Bildern · Karte mit Vorschau · Feuer · Guss-Finale */
+:root{color-scheme:dark;--bg:#140c0a;--ink:#f4f1ea;--mute:#9aa6bf;--or:#ff8a4c;--line:rgba(244,241,234,.14)}
+*{box-sizing:border-box;min-width:0}
+html{scroll-padding-top:70px}
+body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.55 Inter,system-ui,sans-serif;overflow-x:clip}
+a{color:inherit}
+.mono{font:500 11px/1.4 'JetBrains Mono',monospace;letter-spacing:.14em;text-transform:uppercase;color:var(--mute)}
+.it{font-family:Fraunces,serif;font-style:italic;font-weight:400;color:var(--or)}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;min-height:46px;padding:0 22px;border-radius:999px;background:var(--or);color:#1a1006;text-decoration:none;font-weight:600;font-size:15px;border:0;white-space:nowrap;cursor:pointer;font-family:inherit}
+.btn.ghost{background:transparent;color:var(--ink);border:1.5px solid rgba(244,241,234,.4)}
+:focus-visible{outline:3px solid #ffd08a;outline-offset:3px}
+nav{position:fixed;inset:0 0 auto;z-index:30;display:flex;align-items:center;gap:22px;padding:14px max(4vw,16px);background:linear-gradient(rgba(20,12,10,.92),rgba(20,12,10,0))}
+nav .logo{font:900 26px/1 Fraunces,serif;text-decoration:none;margin-right:auto;letter-spacing:-.01em}
+nav .logo i{font-weight:400;color:var(--or)}
+nav a.l{text-decoration:none;font:500 11px 'JetBrains Mono',monospace;letter-spacing:.14em;text-transform:uppercase;color:var(--mute)}nav a.l:hover{color:var(--ink)}
+
+/* ---------- Gerichte (eine Bühne, fünf Szenen) ---------- */
+.show{height:620vh;position:relative}
+.stage{position:sticky;top:0;height:100vh;height:100svh;overflow:hidden}
+.glow{position:absolute;inset:0;background:radial-gradient(circle at 50% 48%,var(--gl,#ff8a4c33) 0,transparent 55%);transition:background .6s}
+.lab{position:absolute;z-index:4;left:max(4vw,16px);top:clamp(86px,15vh,150px);max-width:300px}
+.lab .no{font:italic 400 clamp(44px,5vw,64px)/1 Fraunces,serif;color:var(--or)}
+.lab .no small{font:500 11px 'JetBrains Mono',monospace;color:var(--mute);vertical-align:top;margin-left:6px;font-style:normal}
+.lab h2{font:400 clamp(26px,2.6vw,36px)/1.05 Fraunces,serif;margin:14px 0 4px}
+.lab h2 .it{display:block}
+.lab p{margin:10px 0 14px;color:var(--mute);font-size:14px}
+.lab .pr{font:600 18px Inter;margin-right:14px}
+.lab .go{font:500 11px 'JetBrains Mono',monospace;letter-spacing:.14em;text-transform:uppercase;color:var(--or);text-decoration:none}
+.idx{position:absolute;z-index:4;right:max(4vw,16px);top:clamp(86px,15vh,150px);width:210px}
+.idx ol{list-style:none;margin:10px 0 0;padding:0;border-top:1px solid var(--line)}
+.idx li{padding:9px 0;border-bottom:1px solid var(--line);font:500 11px 'JetBrains Mono',monospace;letter-spacing:.1em;text-transform:uppercase;color:#5f6a84;transition:color .3s}
+.idx li b{font-weight:500;margin-right:10px}
+.idx li.on{color:var(--or)}
+.pic{position:absolute;left:50%;top:46%;width:min(62vh,58vw);aspect-ratio:1;translate:-50% -50%;z-index:2}
+.pic video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;background:center/cover no-repeat;opacity:0;transform:scale(.8) rotate(-6deg);transition:opacity .55s ease,transform .9s cubic-bezier(.2,.8,.2,1);-webkit-mask-image:radial-gradient(circle,#000 52%,transparent 72%);mask-image:radial-gradient(circle,#000 52%,transparent 72%)}
+.pic video.on{opacity:1;transform:scale(1) rotate(0)}
+.badge{position:absolute;z-index:3;right:-2%;top:6%;width:92px;height:92px}
+.badge svg{width:100%;height:100%;animation:spin 18s linear infinite}
+.badge::after{content:"";position:absolute;inset:38%;border-radius:50%;background:var(--or)}
+@keyframes spin{to{transform:rotate(360deg)}}
+.word{position:absolute;z-index:3;left:0;right:0;bottom:clamp(20px,6vh,70px);margin:0;text-align:center;pointer-events:none}
+.word span{position:absolute;left:0;right:0;bottom:0;font:900 clamp(72px,15vw,230px)/.85 Fraunces,serif;letter-spacing:-.035em;background:linear-gradient(180deg,#fff 30%,var(--w,#d9c8ff));-webkit-background-clip:text;background-clip:text;color:transparent;opacity:0;transform:translateY(60px);transition:opacity .5s,transform .8s cubic-bezier(.2,.8,.2,1);filter:drop-shadow(0 18px 40px rgba(0,0,0,.55))}
+.word span.on{opacity:1;transform:none}
+.lab>div{transition:opacity .35s}
+.hint{position:absolute;left:50%;bottom:8px;translate:-50% 0;z-index:5;white-space:nowrap}
+
+/* ---------- Geschichte ---------- */
+.story{padding:clamp(90px,14vw,190px) max(4vw,16px) clamp(60px,8vw,110px);max-width:1180px;margin:0 auto}
+.story p.big{font:400 clamp(30px,4.2vw,60px)/1.18 Fraunces,serif;margin:22px 0 0;letter-spacing:-.01em}
+.story .w{opacity:.16;transition:opacity .4s}
+.story .w.on{opacity:1}
+.chip{display:inline-block;width:1.5em;height:1em;border-radius:.3em;vertical-align:-.1em;background:center/cover no-repeat #1b2547;margin:0 .1em}
+.steps{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:18px;margin-top:clamp(50px,7vw,90px)}
+.steps figure{margin:0}
+.steps .im{aspect-ratio:4/5;border-radius:18px;background:center/cover no-repeat #24150f;transform:translateY(var(--y,0));transition:transform .1s linear}
+.steps figcaption{margin-top:12px;display:flex;gap:10px;align-items:baseline}
+.steps figcaption .it{font-size:30px}
+.steps figcaption b{font:400 22px Fraunces,serif}
+.steps figcaption span{display:block;color:var(--mute);font-size:14px}
+
+/* ---------- Wort mit Bild ---------- */
+.mask{height:180vh;position:relative}
+.mask .stage{display:grid;place-items:center}
+.mask h2{margin:0;font:900 clamp(110px,26vw,420px)/.8 Fraunces,serif;letter-spacing:-.05em;background:var(--img) center/cover no-repeat;background-size:var(--bs,140%);-webkit-background-clip:text;background-clip:text;color:transparent;-webkit-text-stroke:1px rgba(244,241,234,.18)}
+.mask .cap{position:absolute;bottom:9vh;left:0;right:0;text-align:center}
+
+/* ---------- Kräuter ---------- */
+.herbs{display:grid;grid-template-columns:minmax(0,1.3fr) minmax(0,1fr);gap:clamp(24px,5vw,70px);align-items:center;padding:clamp(60px,8vw,120px) max(4vw,16px);max-width:1280px;margin:0 auto}
+.herbs .im{aspect-ratio:16/10;border-radius:22px;background:center/cover no-repeat #24150f}
+.herbs h2{font:400 clamp(40px,5.4vw,76px)/1 Fraunces,serif;margin:14px 0 22px;letter-spacing:-.02em}
+.herbs ul{list-style:none;margin:0;padding:0;border-top:1px solid var(--line)}
+.herbs li{display:flex;justify-content:space-between;gap:12px;padding:11px 0;border-bottom:1px solid var(--line);font:400 19px Fraunces,serif}
+.herbs li span{color:var(--mute);font:500 11px 'JetBrains Mono',monospace;letter-spacing:.12em;text-transform:uppercase;align-self:center}
+
+/* ---------- Für den ganzen Tisch ---------- */
+.table{padding:clamp(60px,8vw,120px) max(4vw,16px);max-width:1280px;margin:0 auto}
+.table .hd{display:flex;justify-content:space-between;align-items:end;gap:30px;flex-wrap:wrap;margin-bottom:34px}
+.table h2{font:400 clamp(44px,6.4vw,92px)/.95 Fraunces,serif;margin:0;letter-spacing:-.02em}
+.table .hd p{max-width:300px;color:var(--mute);font-size:14px;margin:0}
+.rows{border-top:1px solid var(--line);position:relative}
+.r{display:grid;grid-template-columns:44px minmax(0,1.4fr) minmax(0,1fr) 130px 90px;gap:18px;align-items:center;padding:16px 0;border-bottom:1px solid var(--line);transition:border-color .3s}
+.r .n{font:400 clamp(24px,2.8vw,40px)/1.05 Fraunces,serif;transition:color .3s,font-style .3s}
+.r:hover .n,.r.on .n{color:var(--or);font-style:italic}
+.r:hover{border-bottom-color:var(--or)}
+.r .d{color:var(--mute);font-size:13px}
+.r .t{justify-self:start;font:500 10px 'JetBrains Mono',monospace;letter-spacing:.12em;text-transform:uppercase;border:1px solid var(--line);border-radius:999px;padding:5px 10px}
+.r .p{text-align:right;font-weight:600;font-variant-numeric:tabular-nums}
+.float{position:fixed;z-index:25;left:0;top:0;width:210px;aspect-ratio:1;pointer-events:none;opacity:0;transition:opacity .25s;background:center/cover no-repeat;-webkit-mask-image:radial-gradient(circle,#000 50%,transparent 72%);mask-image:radial-gradient(circle,#000 50%,transparent 72%)}
+.full{margin-top:60px}
+.tabs{display:flex;flex-wrap:wrap;gap:8px;margin:14px 0 22px}
+.tabs button{min-height:40px;padding:0 16px;border-radius:999px;border:1px solid var(--line);background:transparent;color:var(--mute);font:500 11px 'JetBrains Mono',monospace;letter-spacing:.12em;text-transform:uppercase;cursor:pointer}
+.tabs button[aria-selected=true]{background:var(--ink);color:var(--bg);border-color:var(--ink)}
+.grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:0 56px}
+.g{display:flex;gap:10px;align-items:baseline;padding:12px 0;border-bottom:1px dashed var(--line)}
+.g b{font:400 19px Fraunces,serif}.g span{display:block;color:var(--mute);font-size:13px}.g i{margin-left:auto;font-style:normal;font-weight:600;white-space:nowrap}
+
+/* ---------- Feuer ---------- */
+.fire{padding:clamp(70px,9vw,130px) max(4vw,16px);max-width:1280px;margin:0 auto}
+.fire .hd{display:flex;justify-content:space-between;align-items:end;gap:20px;flex-wrap:wrap}
+.fire h2{font:400 clamp(48px,7vw,104px)/.92 Fraunces,serif;margin:12px 0 0;letter-spacing:-.02em}
+.fire .num{font:900 clamp(90px,14vw,210px)/.8 Fraunces,serif;background:linear-gradient(180deg,#ffd27a,#e5532a);-webkit-background-clip:text;background-clip:text;color:transparent;text-align:right}
+.fire .num small{display:block;font:500 11px 'JetBrains Mono',monospace;color:var(--mute);letter-spacing:.14em;text-transform:uppercase;-webkit-text-fill-color:var(--mute);margin-top:10px}
+.fire .row{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:18px;margin-top:40px}
+.fire figure{margin:0}
+.fire .im{aspect-ratio:4/5;border-radius:18px;background:center/cover no-repeat #1b1410}
+.fire figcaption{margin-top:10px}
+
+/* ---------- Finale mit Guss ---------- */
+.pour{height:300vh;position:relative}
+.pour .stage{display:grid;place-items:center}
+.pour video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.pour .stage::after{content:"";position:absolute;inset:0;background:radial-gradient(circle at 50% 50%,transparent 40%,rgba(20,12,10,.75))}
+.pour h2{position:relative;z-index:3;margin:0;text-align:center;font:900 clamp(64px,11vw,170px)/.92 Fraunces,serif;letter-spacing:-.03em}
+.pour h2 span{display:block;opacity:.08;transition:opacity .4s,transform .6s;transform:translateY(30px)}
+.pour h2 span.on{opacity:1;transform:none}
+.pour h2 .it{font-weight:400}
+.card{position:absolute;z-index:2;width:clamp(110px,14vw,190px);border-radius:16px;overflow:hidden;background:#24150f;box-shadow:0 30px 60px rgba(0,0,0,.5)}
+.card div{aspect-ratio:1;background:center/cover no-repeat}
+.card p{margin:0;padding:8px 10px}
+.c1{left:5vw;top:16vh}.c2{right:6vw;top:22vh}.c3{left:9vw;bottom:12vh}.c4{right:9vw;bottom:10vh}
+
+/* ---------- Feiern, Bestellen, Kontakt ---------- */
+.band{padding:clamp(60px,8vw,120px) max(4vw,16px)}
+.in{max-width:1180px;margin:0 auto}
+.party h2,.order h2{font:400 clamp(42px,6vw,86px)/.95 Fraunces,serif;margin:12px 0 14px;letter-spacing:-.02em}
+.party p.l{color:var(--mute);max-width:56ch;margin:0}
+.pc{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px;margin-top:34px}
+.pc div{border-top:1px solid var(--or);padding-top:16px}
+.pc b{display:block;font:400 26px Fraunces,serif;margin-bottom:6px}.pc span{color:var(--mute)}
+.order{background:#0e1530;border-top:1px solid var(--line)}
+.order .in{display:grid;grid-template-columns:minmax(0,1.1fr) minmax(0,1fr);gap:44px;align-items:start}
+.order p{color:var(--mute);max-width:480px;margin:0 0 22px}
+.cta{display:flex;flex-wrap:wrap;gap:12px}
+form{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px;border:1px solid var(--line);padding:22px;border-radius:22px}
+form h3{grid-column:1/-1;margin:0;font:400 28px Fraunces,serif}
+label{display:grid;gap:6px;font:500 11px 'JetBrains Mono',monospace;letter-spacing:.12em;text-transform:uppercase;color:var(--mute)}
+input,select{font:16px Inter,sans-serif;min-height:46px;padding:8px 12px;border-radius:10px;border:1px solid rgba(244,241,234,.25);background:rgba(244,241,234,.05);color:var(--ink)}
+select option{color:#140c0a}.wide{grid-column:1/-1}
+.ok{display:none;grid-column:1/-1;background:var(--or);color:#1a1006;border-radius:12px;padding:12px 14px;font-weight:600;margin:0}
+.info .in{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:32px}
+.info h3{font:400 26px Fraunces,serif;margin:10px 0}
+.info p{margin:0;color:var(--mute)}
+.hours{width:100%;border-collapse:collapse;color:var(--mute)}.hours td{padding:4px 0}.hours td+td{text-align:right;white-space:nowrap}
+footer{padding:26px max(4vw,16px);border-top:1px solid var(--line);color:var(--mute);font-size:13px;display:flex;flex-wrap:wrap;gap:8px 24px;justify-content:space-between}
+
+@media(max-width:820px){
+ nav a.l{display:none}
+ .idx{display:none}
+ .lab{top:78px;max-width:none;right:16px}
+ .lab p{display:none}
+ .pic{top:52%;width:min(92vw,52vh)}
+ .badge{width:70px;height:70px}
+ .steps,.fire .row,.pc,.info .in,.order .in,.herbs,.grid{grid-template-columns:minmax(0,1fr)}
+ .steps .im,.fire .im{aspect-ratio:16/11}
+ .r{grid-template-columns:30px minmax(0,1fr) auto;gap:10px}
+ .r .d,.r .t{display:none}
+ .float{display:none}
+ form{grid-template-columns:1fr}
+ .card{display:none}
+ .fire .num{text-align:left}
+}
+@media(prefers-reduced-motion:reduce){
+ .badge svg{animation:none}
+ .story .w{opacity:1}
+ .pour h2 span{opacity:1;transform:none}
+}
+</style>
+</head>
+<body>
+<nav aria-label="Hauptmenü">
+ <a class="logo" href="#top">Nonna <i>Lina</i></a>
+ <a class="l" href="#tisch">Speisekarte</a>
+ <a class="l" href="#feiern">Feiern</a>
+ <a class="l" href="#kontakt">Kontakt</a>
+ <a class="btn js-order" href="#bestellen">Online bestellen</a>
+</nav>
+
+<section class="show" id="top" aria-label="Die Gerichte des Hauses">
+ <div class="stage">
+  <div class="glow" id="glow"></div>
+  <div class="lab" id="lab"></div>
+  <aside class="idx" aria-hidden="true"><span class="mono">Der Tisch</span><ol id="idx"></ol></aside>
+  <div class="pic" id="pic">
+   <div class="badge" aria-hidden="true"><svg viewBox="0 0 100 100"><defs><path id="cir" d="M50 50m-38 0a38 38 0 1 1 76 0a38 38 0 1 1-76 0"/></defs><text font-family="JetBrains Mono" font-size="8.4" letter-spacing="2.2" fill="#f4f1ea"><textPath href="#cir">HOLZOFEN · PASTA · HAUSGEMACHT · </textPath></text></svg></div>
+  </div>
+  <p class="word" id="word" aria-hidden="true"></p>
+  <span class="hint mono">Scrollen · Musterseite</span>
+ </div>
+</section>
+
+<section class="story" aria-label="Unsere Küche">
+ <span class="mono">— Wie bei Nonna</span>
+ <p class="big" id="storyText"></p>
+ <span class="mono" style="display:block;margin-top:60px">— Drei Schritte · ein Ofen</span>
+ <div class="steps" id="steps"></div>
+</section>
+
+<section class="mask" aria-label="Pizza">
+ <div class="stage"><h2 id="maskWord">Pizza</h2><p class="cap mono">Unser Klassiker · aus dem Holzofen</p></div>
+</section>
+
+<section class="herbs" aria-label="Kräuter">
+ <div class="im" id="herbsImg"></div>
+ <div>
+  <span class="mono">— Aus der Küche</span>
+  <h2>Basilikum, Tomate, Olivenöl. <span class="it">Jeden Tag frisch.</span></h2>
+  <ul>
+   <li>Basilikum <span>Margherita</span></li>
+   <li>San-Marzano-Tomaten <span>Die Sauce</span></li>
+   <li>Fior di Latte <span>Jede Pizza</span></li>
+   <li>Olivenöl <span>Burrata</span></li>
+   <li>Parmigiano <span>Pasta</span></li>
+  </ul>
+ </div>
+</section>
+
+<section class="table" id="tisch" aria-label="Speisekarte">
+ <div class="hd">
+  <h2>Für den <span class="it">ganzen</span> Tisch.</h2>
+  <p>Die Empfehlungen des Hauses. Fahren Sie über ein Gericht, um es zu sehen – darunter die ganze Karte.</p>
+ </div>
+ <div class="rows" id="rows"></div>
+ <div class="full">
+  <span class="mono">— Die ganze Karte</span>
+  <div class="tabs" role="tablist" id="tabs"></div>
+  <div class="grid" id="grid"></div>
+ </div>
+</section>
+<div class="float" id="float" aria-hidden="true"></div>
+
+<section class="fire" aria-label="Aus dem Ofen">
+ <div class="hd">
+  <div><span class="mono">— Aus dem Holzofen</span><h2>Das Feuer <span class="it">erzählt.</span></h2></div>
+  <div class="num">450°<small>im Holzofen</small></div>
+ </div>
+ <div class="row" id="fireRow"></div>
+</section>
+
+<section class="pour" id="pour" aria-label="Mehl, Wasser, Geduld">
+ <div class="stage">
+  <video id="pv" muted playsinline preload="auto"></video>
+  <div class="card c1"><div id="cd1"></div><p class="mono">Margherita</p></div>
+  <div class="card c2"><div id="cd2"></div><p class="mono">Burrata</p></div>
+  <div class="card c3"><div id="cd3"></div><p class="mono">Tagliatelle</p></div>
+  <div class="card c4"><div id="cd4"></div><p class="mono">Tiramisù</p></div>
+  <h2 id="pourWords"><span>Mehl.</span><span class="it">Wasser.</span><span>Geduld.</span></h2>
+ </div>
+</section>
+
+<section class="band party" id="feiern"><div class="in">
+ <span class="mono">— Feiern bei Da Nonna Lina</span>
+ <h2>Platz für <span class="it">jede</span> Runde.</h2>
+ <p class="l">Geburtstag, Firmenfeier oder Familienfest – mit Pizza und Pasta für die ganze Runde.</p>
+ <div class="pc">
+  <div><b>Ein Teil des Restaurants</b><span>Für größere Runden, mitten im Geschehen.</span></div>
+  <div><b>Catering</b><span>Pizza und Pasta für Ihre Feier zu Hause.</span></div>
+  <div><b>Das ganze Haus</b><span>Exklusiv für Ihre Gesellschaft.</span></div>
+ </div>
+</div></section>
+
+<section class="band order" id="bestellen"><div class="in">
+ <div>
+  <span class="mono">— Direkt bei uns</span>
+  <h2>Bestellen Sie <span class="it">direkt</span> bei uns.</h2>
+  <p>Ihre Bestellung geht ohne Umweg in unsere Küche – zum Abholen oder nach Hause. Bezahlen online mit Karte oder Wallet.</p>
+  <div class="cta"><a class="btn js-order" href="#bestellen">Jetzt online bestellen</a><a class="btn ghost" href="tel:+491234567890">Anrufen: 01234 567890</a></div>
+ </div>
+ <form id="reservieren">
+  <h3>Tisch reservieren</h3>
+  <label>Datum<input type="date" id="r-date" required></label>
+  <label>Uhrzeit<select id="r-time"></select></label>
+  <label>Personen<select id="r-pers"></select></label>
+  <label>Name<input id="r-name" autocomplete="name" required></label>
+  <label class="wide">Telefon oder E-Mail<input id="r-contact" required></label>
+  <button class="btn wide" type="submit">Reservierung anfragen</button>
+  <p class="ok" id="r-ok" role="status"></p>
+ </form>
+</div></section>
+
+<section class="band info" id="kontakt"><div class="in">
+ <div><span class="mono">Adresse</span><h3>Da Nonna Lina</h3><p>Musterstraße 1<br>12345 Musterstadt<br><br>Telefon <a href="tel:+491234567890">01234 567890</a><br>info@beispiel.de</p></div>
+ <div><span class="mono">Öffnungszeiten</span><h3>Wir sind da</h3><table class="hours"><tr><td>Montag</td><td>Ruhetag</td></tr><tr><td>Di – Sa</td><td>11:30–14:30 · 17:00–22:00</td></tr><tr><td>Sonntag</td><td>11:30–21:00</td></tr></table></div>
+ <div><span class="mono">Anfahrt</span><h3>Mitten im Ort</h3><p>Parkplätze direkt vor dem Haus.</p></div>
+</div></section>
+
+<footer><span>Da Nonna Lina · Musterstraße 1 · 12345 Musterstadt · Musterseite: Name, Speisekarte und Preise sind Beispiele</span><span>Musterseite von GT Solutions · Online-Bestellung über GastroLive · Bilder und Videos: Beispiele, KI-generiert</span></footer>
+
+<script>
+{
+ /* GastroLive-Bestelllink (Demo-Tenant) hier eintragen; leer = Buttons springen zu „Bestellen“ */
+ const BESTELL_URL = '';
+ if (BESTELL_URL) document.querySelectorAll('.js-order').forEach(a => { a.href = BESTELL_URL; a.target = '_blank'; a.rel = 'noopener'; });
+
+ /* Beispielbilder (KI, Higgsfield) – später durch echte Fotos ersetzen */
+ const B = 'https://d8j0ntlcm91z4.cloudfront.net/user_3FGw5P8xBkfK8p8SNSjW3qLp5wy/hf_20261121_';
+ const I = {"d1": "https://d8j0ntlcm91z4.cloudfront.net/user_3FGw5P8xBkfK8p8SNSjW3qLp5wy/hf_20261121_194022_3933efeb-2b22-414b-afc5-b80e8044078e.png", "d2": "https://d8j0ntlcm91z4.cloudfront.net/user_3FGw5P8xBkfK8p8SNSjW3qLp5wy/hf_20261121_194022_b975cf9f-0415-4186-acef-bcc0284c7377.png", "d3": "https://d8j0ntlcm91z4.cloudfront.net/user_3FGw5P8xBkfK8p8SNSjW3qLp5wy/hf_20261121_194101_25d8c20b-e912-477a-8118-9c7cff13da08.png", "d4": "https://d8j0ntlcm91z4.cloudfront.net/user_3FGw5P8xBkfK8p8SNSjW3qLp5wy/hf_20261121_194023_713d490f-41ea-4e68-b5a4-1fba832e8f19.png", "d5": "https://d8j0ntlcm91z4.cloudfront.net/user_3FGw5P8xBkfK8p8SNSjW3qLp5wy/hf_20261121_194022_0323f162-8d8d-4a3b-acb2-2d649d9949cb.png", "s1": "https://d8j0ntlcm91z4.cloudfront.net/user_3FGw5P8xBkfK8p8SNSjW3qLp5wy/hf_20261121_194023_43ee46f5-ac70-43b4-b450-24aed364c93f.png", "s2": "https://d8j0ntlcm91z4.cloudfront.net/user_3FGw5P8xBkfK8p8SNSjW3qLp5wy/hf_20261121_194101_6007e345-4508-4ae6-a150-874fe5b30bf8.png", "s3": "https://d8j0ntlcm91z4.cloudfront.net/user_3FGw5P8xBkfK8p8SNSjW3qLp5wy/hf_20261121_194023_0de893a6-4f50-4b44-a91d-459eacf404ac.png", "herbs": "https://d8j0ntlcm91z4.cloudfront.net/user_3FGw5P8xBkfK8p8SNSjW3qLp5wy/hf_20261121_194023_88070566-cb68-416b-b0e5-9911b83cd416.png", "f3": "https://d8j0ntlcm91z4.cloudfront.net/user_3FGw5P8xBkfK8p8SNSjW3qLp5wy/hf_20261121_194023_fb156223-caeb-4f0b-9f85-384e4e514d19.png"};
+ const VIDEO_URL = ''; /* kein Guss-Video in der Musterseite: Standbild */
+
+ const $ = id => document.getElementById(id);
+ const D = [{"a": "Pizza", "b": "Margherita", "d": "San-Marzano-Tomaten, Fior di Latte und Basilikum.", "p": "9,50 €", "w": "Margherita", "img": "https://d8j0ntlcm91z4.cloudfront.net/user_3FGw5P8xBkfK8p8SNSjW3qLp5wy/hf_20261121_194022_3933efeb-2b22-414b-afc5-b80e8044078e.png", "v": "https://d8j0ntlcm91z4.cloudfront.net/user_3FGw5P8xBkfK8p8SNSjW3qLp5wy/hf_20261121_194138_af98c08a-210d-4c91-b4fe-8c184feacd7c.mp4", "gl": "#ff8a4c40", "wc": "#ffc9a0"}, {"a": "Pizza", "b": "Diavola", "d": "Scharfe Salami, Peperoncino und Mozzarella.", "p": "12,50 €", "w": "Diavola", "img": "https://d8j0ntlcm91z4.cloudfront.net/user_3FGw5P8xBkfK8p8SNSjW3qLp5wy/hf_20261121_194022_b975cf9f-0415-4186-acef-bcc0284c7377.png", "v": "https://d8j0ntlcm91z4.cloudfront.net/user_3FGw5P8xBkfK8p8SNSjW3qLp5wy/hf_20261121_194138_9f123dbf-d92a-4185-8006-6fe8dc9115f3.mp4", "gl": "#ff4a3a3a", "wc": "#ffb0a0"}, {"a": "Tagliatelle", "b": "al Ragù", "d": "Hausgemachte Pasta mit sechs Stunden geschmortem Ragù.", "p": "13,90 €", "w": "Pasta", "img": "https://d8j0ntlcm91z4.cloudfront.net/user_3FGw5P8xBkfK8p8SNSjW3qLp5wy/hf_20261121_194101_25d8c20b-e912-477a-8118-9c7cff13da08.png", "v": "https://d8j0ntlcm91z4.cloudfront.net/user_3FGw5P8xBkfK8p8SNSjW3qLp5wy/hf_20261121_194201_5aae91fc-32c4-4698-b62e-fa3b78d81871.mp4", "gl": "#f2c94c38", "wc": "#ffe2a0"}, {"a": "Burrata", "b": "e Pomodori", "d": "Cremige Burrata mit bunten Tomaten und Olivenöl.", "p": "11,90 €", "w": "Burrata", "img": "https://d8j0ntlcm91z4.cloudfront.net/user_3FGw5P8xBkfK8p8SNSjW3qLp5wy/hf_20261121_194023_713d490f-41ea-4e68-b5a4-1fba832e8f19.png", "v": "https://d8j0ntlcm91z4.cloudfront.net/user_3FGw5P8xBkfK8p8SNSjW3qLp5wy/hf_20261121_194201_6b78fee0-8bbb-4a2d-9d29-ec4a2c39a192.mp4", "gl": "#8cc15236", "wc": "#cdf0b0"}, {"a": "Tiramisù", "b": "della Casa", "d": "Nach dem Rezept der Nonna – jeden Morgen frisch.", "p": "6,90 €", "w": "Dolce", "img": "https://d8j0ntlcm91z4.cloudfront.net/user_3FGw5P8xBkfK8p8SNSjW3qLp5wy/hf_20261121_194022_0323f162-8d8d-4a3b-acb2-2d649d9949cb.png", "v": "https://d8j0ntlcm91z4.cloudfront.net/user_3FGw5P8xBkfK8p8SNSjW3qLp5wy/hf_20261121_194201_c81199ee-d8ff-4446-98f3-76a4cad1b9b8.mp4", "gl": "#c9a27a3a", "wc": "#f0d8b8"}];
+ const pic = $('pic'), word = $('word'), still0 = matchMedia('(prefers-reduced-motion: reduce)').matches;
+ D.forEach((x,i) => { const im = document.createElement('video'); im.muted = true; im.playsInline = true; im.setAttribute('playsinline',''); im.preload = 'auto'; im.poster = x.img; im.style.backgroundImage = `url('${x.img}')`; if (x.v && !still0) im.src = x.v; im.setAttribute('aria-label', x.a+' '+x.b); im.onerror = () => im.removeAttribute('src'); pic.prepend(im);
+  const s = document.createElement('span'); s.textContent = x.w; s.style.setProperty('--w', x.wc); word.append(s); });
+ const imgs = [...pic.querySelectorAll('video')].reverse(), words = [...word.children];
+ $('idx').innerHTML = D.map((x,i)=>`<li><b>0${i+1}</b>${x.a} ${x.b}</li>`).join('');
+ const lis = [...$('idx').children];
+ let cur = -1;
+ const setDish = i => { if (i === cur) return; cur = i; const x = D[i];
+  $('lab').innerHTML = `<div><span class="mono">Da Nonna Lina · Musterstadt</span><div class="no">0${i+1}<small>/ 05</small></div><h2>${x.a}<span class="it">${x.b}</span></h2><p>${x.d}</p>${x.p?`<span class="pr">${x.p}</span>`:''}<a class="go js-order" href="#bestellen">Bestellen →</a></div>`;
+  if (BESTELL_URL) { const g = $('lab').querySelector('.go'); g.href = BESTELL_URL; g.target = '_blank'; }
+  imgs.forEach((m,j)=>m.classList.toggle('on', j===i)); words.forEach((m,j)=>m.classList.toggle('on', j===i)); lis.forEach((m,j)=>m.classList.toggle('on', j===i));
+  $('glow').style.setProperty('--gl', x.gl); };
+ setDish(0);
+
+ /* Geschichte mit Mini-Bildern */
+ const story = "Jede Pizza beginnt mit dem Teig: [s1] Mehl, Wasser und *48 Stunden Ruhe.* Dann kommt die Sauce aus San-Marzano-Tomaten [s2] und köchelt langsam vor sich hin. Zum Schluss ab in den *Holzofen* [s3] – neunzig Sekunden, bis der Rand Blasen wirft. So backt die Familie seit Jahren – *wie bei Nonna.*";
+ $('storyText').innerHTML = story.split(' ').map(t => { const m = t.match(/^\[(\w+)\]$/); if (m) return `<span class="w chip" style="background-image:url('${I[m[1]]}')"></span>`;
+  const it = t.startsWith('*') || t.endsWith('*') || t.endsWith('*.') ; return `<span class="w${/\*/.test(t)?' it':''}">${t.replace(/\*/g,'')}</span>`; }).join(' ');
+ $('steps').innerHTML = [["01", "Der Teig", "Mehl, Wasser, Salz – und 48 Stunden Ruhe.", "https://d8j0ntlcm91z4.cloudfront.net/user_3FGw5P8xBkfK8p8SNSjW3qLp5wy/hf_20261121_194023_43ee46f5-ac70-43b4-b450-24aed364c93f.png"], ["02", "Die Sauce", "San-Marzano-Tomaten, Basilikum, Olivenöl.", "https://d8j0ntlcm91z4.cloudfront.net/user_3FGw5P8xBkfK8p8SNSjW3qLp5wy/hf_20261121_194101_6007e345-4508-4ae6-a150-874fe5b30bf8.png"], ["03", "Der Ofen", "90 Sekunden bei 450 Grad im Holzofen.", "https://d8j0ntlcm91z4.cloudfront.net/user_3FGw5P8xBkfK8p8SNSjW3qLp5wy/hf_20261121_194023_0de893a6-4f50-4b44-a91d-459eacf404ac.png"]]
+  .map(([n,t,d,u],k)=>`<figure><div class="im" style="background-image:url('${u}')" data-k="${k}"></div><figcaption><span class="it">${n}</span><div><b>${t}</b><span>${d}</span></div></figcaption></figure>`).join('');
+ document.querySelector('.mask h2').style.setProperty('--img', `url('${"https://d8j0ntlcm91z4.cloudfront.net/user_3FGw5P8xBkfK8p8SNSjW3qLp5wy/hf_20261121_194022_3933efeb-2b22-414b-afc5-b80e8044078e.png"}')`);
+ $('herbsImg').style.backgroundImage = `url('${I.herbs}')`;
+
+ /* Karte mit Vorschau */
+ const R = [["Pizza Margherita", "San-Marzano-Tomaten, Fior di Latte, Basilikum", "Klassiker", "9,50 €", "https://d8j0ntlcm91z4.cloudfront.net/user_3FGw5P8xBkfK8p8SNSjW3qLp5wy/hf_20261121_194022_3933efeb-2b22-414b-afc5-b80e8044078e.png"], ["Pizza Diavola", "Scharfe Salami, Peperoncino, Mozzarella", "Bestseller", "12,50 €", "https://d8j0ntlcm91z4.cloudfront.net/user_3FGw5P8xBkfK8p8SNSjW3qLp5wy/hf_20261121_194022_b975cf9f-0415-4186-acef-bcc0284c7377.png"], ["Tagliatelle al Ragù", "Hausgemachte Pasta, geschmortes Ragù", "Hausgemacht", "13,90 €", "https://d8j0ntlcm91z4.cloudfront.net/user_3FGw5P8xBkfK8p8SNSjW3qLp5wy/hf_20261121_194101_25d8c20b-e912-477a-8118-9c7cff13da08.png"], ["Burrata e Pomodori", "Burrata, bunte Tomaten, Olivenöl", "Vorspeise", "11,90 €", "https://d8j0ntlcm91z4.cloudfront.net/user_3FGw5P8xBkfK8p8SNSjW3qLp5wy/hf_20261121_194023_713d490f-41ea-4e68-b5a4-1fba832e8f19.png"], ["Pizza Bufala", "Büffelmozzarella, Kirschtomaten, Basilikum", "Aus dem Holzofen", "13,50 €", "https://d8j0ntlcm91z4.cloudfront.net/user_3FGw5P8xBkfK8p8SNSjW3qLp5wy/hf_20261121_194023_fb156223-caeb-4f0b-9f85-384e4e514d19.png"], ["Tiramisù della Casa", "Mascarpone, Espresso, Kakao", "Zum Schluss", "6,90 €", "https://d8j0ntlcm91z4.cloudfront.net/user_3FGw5P8xBkfK8p8SNSjW3qLp5wy/hf_20261121_194022_0323f162-8d8d-4a3b-acb2-2d649d9949cb.png"]];
+ $('rows').innerHTML = R.map(([n,d,t,p,u],i)=>`<div class="r" data-u="${u}"><span class="mono">0${i+1}</span><span class="n">${n}</span><span class="d">${d}</span><span class="t">${t}</span><span class="p">${p}</span></div>`).join('');
+ const fl = $('float');
+ $('rows').addEventListener('mousemove', e => { const r = e.target.closest('.r'); if (!r) { fl.style.opacity = 0; return; }
+  fl.style.backgroundImage = `url('${r.dataset.u}')`; fl.style.opacity = 1; fl.style.transform = `translate(${e.clientX - 105}px, ${e.clientY - 105}px)`; });
+ $('rows').addEventListener('mouseleave', () => fl.style.opacity = 0);
+
+ const karte = {"Antipasti": [["Burrata e Pomodori", "Burrata, bunte Tomaten, Olivenöl", "11,90 €"], ["Bruschetta", "Tomaten, Knoblauch, Basilikum", "6,90 €"], ["Vitello Tonnato", "Kalbfleisch mit Thunfischsauce", "12,90 €"], ["Antipasto misto", "Für zwei zum Teilen", "16,90 €"]], "Pizza": [["Margherita", "Tomaten, Fior di Latte, Basilikum", "9,50 €"], ["Diavola", "Scharfe Salami, Peperoncino", "12,50 €"], ["Bufala", "Büffelmozzarella, Kirschtomaten", "13,50 €"], ["Prosciutto e Funghi", "Schinken und Champignons", "12,90 €"], ["Quattro Formaggi", "Vier Käsesorten", "13,50 €"], ["Tonno e Cipolla", "Thunfisch und rote Zwiebeln", "12,90 €"]], "Pasta": [["Tagliatelle al Ragù", "Hausgemachte Pasta, geschmortes Ragù", "13,90 €"], ["Spaghetti Carbonara", "Guanciale, Ei, Pecorino", "13,50 €"], ["Penne all'Arrabbiata", "Tomaten, Knoblauch, Peperoncino", "10,90 €"], ["Lasagne della Nonna", "Aus dem Ofen", "13,90 €"]], "Dolci": [["Tiramisù della Casa", "Mascarpone, Espresso, Kakao", "6,90 €"], ["Panna Cotta", "Mit Beerensauce", "6,50 €"]], "Kinder": [["Pizza Bambini", "Kleine Margherita", "6,90 €"], ["Pasta al Pomodoro", "Kleine Portion", "6,50 €"]]};
+ const names = Object.keys(karte), tabs = $('tabs');
+ tabs.innerHTML = names.map((n,i)=>`<button role="tab" id="t${i}" aria-selected="${!i}">${n}</button>`).join('');
+ const show = i => { tabs.querySelectorAll('button').forEach((b,j)=>b.setAttribute('aria-selected', j===i));
+  $('grid').innerHTML = karte[names[i]].map(([n,d,p])=>`<div class="g"><div><b>${n}</b><span>${d}</span></div><i>${p||''}</i></div>`).join(''); };
+ tabs.addEventListener('click', e => { const b = e.target.closest('button'); if (b) show(+b.id.slice(1)); });
+ show(0);
+
+ $('fireRow').innerHTML = [["Der Teig", "https://d8j0ntlcm91z4.cloudfront.net/user_3FGw5P8xBkfK8p8SNSjW3qLp5wy/hf_20261121_194023_43ee46f5-ac70-43b4-b450-24aed364c93f.png"], ["Im Holzofen", "https://d8j0ntlcm91z4.cloudfront.net/user_3FGw5P8xBkfK8p8SNSjW3qLp5wy/hf_20261121_194023_0de893a6-4f50-4b44-a91d-459eacf404ac.png"], ["Frisch aus dem Ofen", "https://d8j0ntlcm91z4.cloudfront.net/user_3FGw5P8xBkfK8p8SNSjW3qLp5wy/hf_20261121_194023_fb156223-caeb-4f0b-9f85-384e4e514d19.png"]].map(([t,u])=>`<figure><div class="im" style="background-image:url('${u}')"></div><figcaption class="mono">${t}</figcaption></figure>`).join('');
+ [["cd1", "https://d8j0ntlcm91z4.cloudfront.net/user_3FGw5P8xBkfK8p8SNSjW3qLp5wy/hf_20261121_194022_3933efeb-2b22-414b-afc5-b80e8044078e.png"], ["cd2", "https://d8j0ntlcm91z4.cloudfront.net/user_3FGw5P8xBkfK8p8SNSjW3qLp5wy/hf_20261121_194023_713d490f-41ea-4e68-b5a4-1fba832e8f19.png"], ["cd3", "https://d8j0ntlcm91z4.cloudfront.net/user_3FGw5P8xBkfK8p8SNSjW3qLp5wy/hf_20261121_194101_25d8c20b-e912-477a-8118-9c7cff13da08.png"], ["cd4", "https://d8j0ntlcm91z4.cloudfront.net/user_3FGw5P8xBkfK8p8SNSjW3qLp5wy/hf_20261121_194022_0323f162-8d8d-4a3b-acb2-2d649d9949cb.png"]].forEach(([id,u])=>$(id).style.backgroundImage = `url('${u}')`);
+ document.querySelector('.pour .stage').style.background = `linear-gradient(rgba(20,12,10,.72),rgba(20,12,10,.9)),url('https://d8j0ntlcm91z4.cloudfront.net/user_3FGw5P8xBkfK8p8SNSjW3qLp5wy/hf_20261121_194023_0de893a6-4f50-4b44-a91d-459eacf404ac.png') center/cover`;
+
+ /* Reservierung (Demo) */
+ const times = ['11:30','12:00','12:30','13:00','13:30','17:00','17:30','18:00','18:30','19:00','19:30','20:00','20:30','21:00'];
+ $('r-time').innerHTML = times.map(t=>`<option>${t}</option>`).join('');
+ $('r-pers').innerHTML = Array.from({length:12},(_,i)=>`<option>${i+1}</option>`).join('')+'<option>mehr als 12</option>';
+ const rd = $('r-date'); rd.valueAsDate = new Date(); rd.min = rd.value;
+ $('reservieren').addEventListener('submit', e => { e.preventDefault(); const ok = $('r-ok'); const day = new Date(rd.value+'T12:00');
+  ok.textContent = day.getDay()===1 ? 'Montag ist Ruhetag – bitte wählen Sie einen anderen Tag.'
+   : `Danke, ${$('r-name').value}! Ihre Anfrage für ${$('r-pers').value} Person(en) am ${day.toLocaleDateString('de-DE')} um ${$('r-time').value} Uhr ist eingegangen. (Demo)`;
+  ok.style.display = 'block'; });
+
+ /* Scroll */
+ const still = matchMedia('(prefers-reduced-motion: reduce)').matches;
+ const prog = el => { const r = el.getBoundingClientRect(); return Math.min(1, Math.max(0, -r.top / (r.height - innerHeight))); };
+ const showSec = document.querySelector('.show'), maskSec = document.querySelector('.mask'), pour = $('pour'), pv = $('pv');
+ const sw = [...document.querySelectorAll('#storyText .w')], stepIm = [...document.querySelectorAll('.steps .im')], pw = [...$('pourWords').children];
+ if (VIDEO_URL && !VIDEO_URL.startsWith('__')) { pv.src = VIDEO_URL; pv.addEventListener('error', () => pv.remove()); } else pv.remove();
+ const frame = () => {
+  const p = prog(showSec); setDish(Math.min(4, Math.floor(p * 5)));
+  const t = Math.min(1, p * 5 - Math.min(4, Math.floor(p * 5))); pic.style.transform = `translateY(${(0.5 - t) * 40}px)`;
+  const cv = imgs[cur]; if (cv && cv.duration) { const k = Math.min(1, Math.max(0, 1 - Math.abs(2 * t - 1) * 1.15)); cv.currentTime = k * (cv.duration - 0.05); }
+  const vh = innerHeight;
+  sw.forEach(w => { const r = w.getBoundingClientRect(); w.classList.toggle('on', r.top < vh * 0.72); });
+  stepIm.forEach((m,k) => { const r = m.getBoundingClientRect(); m.style.setProperty('--y', `${(r.top - vh/2) * (0.06 + k*0.03)}px`); });
+  const mp = prog(maskSec); maskSec.querySelector('h2').style.setProperty('--bs', `${150 - mp*40}%`);
+  const pp = prog(pour);
+  if (pv.isConnected && pv.duration) pv.currentTime = pp * (pv.duration - 0.05);
+  pw.forEach((s,k) => s.classList.toggle('on', pp > 0.12 + k * 0.22));
+  document.querySelectorAll('.card').forEach((c,k) => c.style.transform = `translateY(${(0.5 - pp) * (k%2 ? 120 : -90)}px)`);
+ };
+ /* iPhone: Videos einmal anstoßen, damit das Vorspulen beim Scrollen funktioniert */
+ const wake = () => { imgs.forEach(v => { if (v.src) v.play().then(() => v.pause()).catch(() => {}); }); removeEventListener('touchstart', wake); };
+ addEventListener('touchstart', wake, {passive:true});
+ imgs.forEach(v => v.addEventListener('loadedmetadata', () => frame()));
+ let tick = false;
+ addEventListener('scroll', () => { if (!tick) { tick = true; requestAnimationFrame(() => { frame(); tick = false; }); } }, {passive:true});
+ addEventListener('resize', frame); pv.addEventListener('loadedmetadata', frame); frame();
+ if (still) { sw.forEach(w => w.classList.add('on')); pw.forEach(s => s.classList.add('on')); }
+}
+</script>
+</body>
+</html>

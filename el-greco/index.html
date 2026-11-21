@@ -44,8 +44,8 @@ nav a.l{text-decoration:none;font:500 11px 'JetBrains Mono',monospace;letter-spa
 .idx li b{font-weight:500;margin-right:10px}
 .idx li.on{color:var(--or)}
 .pic{position:absolute;left:50%;top:46%;width:min(62vh,58vw);aspect-ratio:1;translate:-50% -50%;z-index:2}
-.pic img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:0;transform:scale(.8) rotate(-6deg);transition:opacity .55s ease,transform .9s cubic-bezier(.2,.8,.2,1);-webkit-mask-image:radial-gradient(circle,#000 52%,transparent 72%);mask-image:radial-gradient(circle,#000 52%,transparent 72%)}
-.pic img.on{opacity:1;transform:scale(1) rotate(0)}
+.pic video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;background:center/cover no-repeat;opacity:0;transform:scale(.8) rotate(-6deg);transition:opacity .55s ease,transform .9s cubic-bezier(.2,.8,.2,1);-webkit-mask-image:radial-gradient(circle,#000 52%,transparent 72%);mask-image:radial-gradient(circle,#000 52%,transparent 72%)}
+.pic video.on{opacity:1;transform:scale(1) rotate(0)}
 .badge{position:absolute;z-index:3;right:-2%;top:6%;width:92px;height:92px}
 .badge svg{width:100%;height:100%;animation:spin 18s linear infinite}
 .badge::after{content:"";position:absolute;inset:38%;border-radius:50%;background:var(--or)}
@@ -317,16 +317,16 @@ footer{padding:26px max(4vw,16px);border-top:1px solid var(--line);color:var(--m
 
  const $ = id => document.getElementById(id);
  const D = [
-  {a:'Gyros',b:'Metaxa',d:'Überbacken mit Metaxasauce, dazu Pommes frites.',p:'21,90 €',w:'Gyros',img:I.gyros,gl:'#f0a44b40',wc:'#ffc9a0'},
-  {a:'El Greco',b:'Teller',d:'Souvlaki, Gyros, Leber, Bratkartoffeln und Tzatziki.',p:'20,90 €',w:'El Greco',img:I.teller,gl:'#ff6a3a3a',wc:'#ffb8c8'},
-  {a:'Saganaki',b:'aus der Pfanne',d:'Goldbraun gebackener Schafskäse mit Zitrone.',p:'',w:'Saganaki',img:I.saganaki,gl:'#f2c94c38',wc:'#ffe2a0'},
-  {a:'Bauernsalat',b:'Choriatiki',d:'Tomaten, Gurken, Zwiebeln, Oliven, Peperoni und Schafskäse.',p:'',w:'Choriatiki',img:I.salat,gl:'#8cc15236',wc:'#cdf0b0'},
-  {a:'Tzatziki',b:'& Ouzo',d:'Hausgemacht mit Gurke und Knoblauch – und ein Ouzo zum Abschied.',p:'',w:'Ouzo',img:I.tzatziki,gl:'#9cc3f03a',wc:'#c9d8ff'}
+  {a:'Gyros',b:'Metaxa',d:'Überbacken mit Metaxasauce, dazu Pommes frites.',p:'21,90 €',w:'Gyros',img:I.gyros,v:B+'082940_a2980287-cca0-4b7e-aa72-b5740e7366e3.mp4',gl:'#f0a44b40',wc:'#ffc9a0'},
+  {a:'El Greco',b:'Teller',d:'Souvlaki, Gyros, Leber, Bratkartoffeln und Tzatziki.',p:'20,90 €',w:'El Greco',img:I.teller,v:B+'082940_a7c6cf92-57a8-4674-9352-d304c36802d9.mp4',gl:'#ff6a3a3a',wc:'#ffb8c8'},
+  {a:'Saganaki',b:'aus der Pfanne',d:'Goldbraun gebackener Schafskäse mit Zitrone.',p:'',w:'Saganaki',img:I.saganaki,v:B+'082941_d2b387cb-b8aa-4867-9ee4-f1877bc41413.mp4',gl:'#f2c94c38',wc:'#ffe2a0'},
+  {a:'Bauernsalat',b:'Choriatiki',d:'Tomaten, Gurken, Zwiebeln, Oliven, Peperoni und Schafskäse.',p:'',w:'Choriatiki',img:I.salat,v:B+'082940_5d57a2d0-b8d9-4ad2-a304-c77ee1eb5f3c.mp4',gl:'#8cc15236',wc:'#cdf0b0'},
+  {a:'Tzatziki',b:'& Ouzo',d:'Hausgemacht mit Gurke und Knoblauch – und ein Ouzo zum Abschied.',p:'',w:'Ouzo',img:I.tzatziki,v:B+'082940_e2181f0c-09ff-4eb1-ab0c-c83d78319fb5.mp4',gl:'#9cc3f03a',wc:'#c9d8ff'}
  ];
- const pic = $('pic'), word = $('word');
- D.forEach((x,i) => { const im = new Image(); im.src = x.img; im.alt = x.a+' '+x.b; im.onerror = () => im.remove(); pic.prepend(im);
+ const pic = $('pic'), word = $('word'), still0 = matchMedia('(prefers-reduced-motion: reduce)').matches;
+ D.forEach((x,i) => { const im = document.createElement('video'); im.muted = true; im.playsInline = true; im.setAttribute('playsinline',''); im.preload = 'auto'; im.poster = x.img; im.style.backgroundImage = `url('${x.img}')`; if (x.v && !still0) im.src = x.v; im.setAttribute('aria-label', x.a+' '+x.b); im.onerror = () => im.removeAttribute('src'); pic.prepend(im);
   const s = document.createElement('span'); s.textContent = x.w; s.style.setProperty('--w', x.wc); word.append(s); });
- const imgs = D.map(x => pic.querySelector(`img[src="${x.img}"]`) || document.createElement('img')), words = [...word.children];
+ const imgs = [...pic.querySelectorAll('video')].reverse(), words = [...word.children];
  $('idx').innerHTML = D.map((x,i)=>`<li><b>0${i+1}</b>${x.a} ${x.b}</li>`).join('');
  const lis = [...$('idx').children];
  let cur = -1;
@@ -390,7 +390,8 @@ footer{padding:26px max(4vw,16px);border-top:1px solid var(--line);color:var(--m
  if (VIDEO_URL && !VIDEO_URL.startsWith('__')) { pv.src = VIDEO_URL; pv.addEventListener('error', () => pv.remove()); } else pv.remove();
  const frame = () => {
   const p = prog(showSec); setDish(Math.min(4, Math.floor(p * 5)));
-  const t = (p * 5) % 1; pic.style.transform = `translateY(${(0.5 - t) * 40}px)`;
+  const t = Math.min(1, p * 5 - Math.min(4, Math.floor(p * 5))); pic.style.transform = `translateY(${(0.5 - t) * 40}px)`;
+  const cv = imgs[cur]; if (cv && cv.duration) { const k = Math.min(1, Math.max(0, 1 - Math.abs(2 * t - 1) * 1.15)); cv.currentTime = k * (cv.duration - 0.05); }
   const vh = innerHeight;
   sw.forEach(w => { const r = w.getBoundingClientRect(); w.classList.toggle('on', r.top < vh * 0.72); });
   stepIm.forEach((m,k) => { const r = m.getBoundingClientRect(); m.style.setProperty('--y', `${(r.top - vh/2) * (0.06 + k*0.03)}px`); });
@@ -400,6 +401,10 @@ footer{padding:26px max(4vw,16px);border-top:1px solid var(--line);color:var(--m
   pw.forEach((s,k) => s.classList.toggle('on', pp > 0.12 + k * 0.22));
   document.querySelectorAll('.card').forEach((c,k) => c.style.transform = `translateY(${(0.5 - pp) * (k%2 ? 120 : -90)}px)`);
  };
+ /* iPhone: Videos einmal anstoßen, damit das Vorspulen beim Scrollen funktioniert */
+ const wake = () => { imgs.forEach(v => { if (v.src) v.play().then(() => v.pause()).catch(() => {}); }); removeEventListener('touchstart', wake); };
+ addEventListener('touchstart', wake, {passive:true});
+ imgs.forEach(v => v.addEventListener('loadedmetadata', () => frame()));
  let tick = false;
  addEventListener('scroll', () => { if (!tick) { tick = true; requestAnimationFrame(() => { frame(); tick = false; }); } }, {passive:true});
  addEventListener('resize', frame); pv.addEventListener('loadedmetadata', frame); frame();
